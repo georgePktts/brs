@@ -1,3 +1,16 @@
-<p>
-  show-bugs works!
-</p>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Priority</th>
+    <th>Reporter</th>
+    <th>Date Created</th>
+    <th>Status</th>
+  </tr>
+  <tr *ngFor="let bug of bugs">
+    <td>{{bug.title}}</td>
+    <td>{{bug.priority}}</td>
+    <td>{{bug.reporter}}</td>
+    <td>{{bug.createdAt | date}}</td>
+    <td>{{bug.status}}</td>
+  </tr>
+</table>
