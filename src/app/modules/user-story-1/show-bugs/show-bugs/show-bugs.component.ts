@@ -11,8 +11,7 @@ import { ShowBugsService } from '../show-bugs.service';
 export class ShowBugsComponent implements OnInit {
 
   bugs: BugInfo[];
-  switchBugsTitle: string;
-  isAsc: boolean = false;
+  isAsc = false;
 
   constructor(private bugService: ShowBugsService) {}
 
@@ -21,12 +20,12 @@ export class ShowBugsComponent implements OnInit {
       this.bugs = data;
     });
   }
+
   getBugsSorted(event) {
-    console.log(event.toElement.innerHTML)
-    this.switchBugsTitle=event.toElement.innerHTML;
-    this.bugService.getBugs(this.switchBugsTitle, this.isAsc).subscribe((data) => {
+    this.bugService.getBugs(event.toElement.innerHTML, this.isAsc).subscribe((data) => {
       this.bugs = data;
-      this.isAsc = (this.isAsc) ? false : true
+      this.isAsc = (this.isAsc) ? false : true;
     });
   }
+
 }
