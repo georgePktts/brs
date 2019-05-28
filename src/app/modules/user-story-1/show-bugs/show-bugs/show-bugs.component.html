@@ -1,11 +1,11 @@
 <table matSort matSortDisableClear="true" class="table table-hover">
   <thead>
-    <tr (click)="getBugsSorted($event)">
-      <th mat-sort-header="title">Title</th>
-      <th mat-sort-header="priority">Priority</th>
-      <th mat-sort-header="reported">Reporter</th>
-      <th mat-sort-header="createdAt">Date Created</th>
-      <th mat-sort-header="status">Status</th>
+    <tr>
+      <th mat-sort-header="title" (click)="getBugsSorted('Title')">Title</th>
+      <th mat-sort-header="priority" (click)="getBugsSorted('Priority')">Priority</th>
+      <th mat-sort-header="reported" (click)="getBugsSorted('Reporter')">Reporter</th>
+      <th mat-sort-header="createdAt" (click)="getBugsSorted('Date Created')">Date Created</th>
+      <th mat-sort-header="status" (click)="getBugsSorted('Status')">Status</th>
     </tr>
   </thead>
   <tbody>

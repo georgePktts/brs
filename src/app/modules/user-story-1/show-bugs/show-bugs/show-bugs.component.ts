@@ -24,12 +24,12 @@ export class ShowBugsComponent implements OnInit {
 
   getBugsSorted(event) {
 
-    if (this.columnName !== event.toElement.innerHTML) {
-      this.columnName = event.toElement.innerHTML;
+    if (this.columnName !== event) {
+      this.columnName = event;
       this.isAsc = false;
     }
 
-    this.bugService.getBugs(event.toElement.innerHTML, this.isAsc).subscribe((data) => {
+    this.bugService.getBugs(event, this.isAsc).subscribe((data) => {
       this.bugs = data;
       this.isAsc = (this.isAsc) ? false : true;
     });
