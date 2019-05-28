@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShowBugsModule } from './modules/user-story-1/show-bugs/show-bugs.module';
 
+// Angural Material
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -13,7 +16,8 @@ import { ShowBugsModule } from './modules/user-story-1/show-bugs/show-bugs.modul
     BrowserModule,
     AppRoutingModule,
     ShowBugsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

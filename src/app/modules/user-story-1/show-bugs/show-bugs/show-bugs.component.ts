@@ -12,6 +12,7 @@ export class ShowBugsComponent implements OnInit {
 
   bugs: BugInfo[];
   isAsc = false;
+  columnName: string;
 
   constructor(private bugService: ShowBugsService) {}
 
@@ -22,6 +23,12 @@ export class ShowBugsComponent implements OnInit {
   }
 
   getBugsSorted(event) {
+
+    if (this.columnName !== event.toElement.innerHTML) {
+      this.columnName = event.toElement.innerHTML;
+      this.isAsc = false;
+    }
+
     this.bugService.getBugs(event.toElement.innerHTML, this.isAsc).subscribe((data) => {
       this.bugs = data;
       this.isAsc = (this.isAsc) ? false : true;
