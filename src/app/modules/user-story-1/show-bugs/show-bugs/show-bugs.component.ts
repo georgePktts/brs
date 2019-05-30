@@ -17,7 +17,7 @@ export class ShowBugsComponent implements OnInit {
   constructor(private bugService: ShowBugsService) {}
 
   ngOnInit() {
-    this.bugService.getBugs('', this.isAsc).subscribe((data) => {
+    this.bugService.getBugs().subscribe((data) => {
       this.bugs = data;
     });
   }

@@ -12,7 +12,7 @@ export class ShowBugsService {
 
   constructor(private http: HttpClient) { }
 
-  getBugs(sortBy, orderBy): Observable<BugInfo[]> {
+  getBugs(sortBy?, orderBy?): Observable<BugInfo[]> {
 
     const direction: string = (orderBy) ? 'asc' : 'desc';
 
