@@ -26,4 +26,10 @@ export class ShowBugsService {
     }
   }
 
+  createBugs(newBug: BugInfo) {
+    this.http.post(this.endpointUrl , newBug).subscribe(responseData => {
+      console.log(responseData);
+    });
+  }
+
 }

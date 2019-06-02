@@ -19,6 +19,7 @@ export class ShowBugsComponent implements OnInit {
   ngOnInit() {
     this.bugService.getBugs().subscribe((data) => {
       this.bugs = data;
+      console.log(data);
     });
   }
 

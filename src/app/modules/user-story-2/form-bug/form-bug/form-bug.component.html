@@ -1,0 +1,91 @@
+<form #bugForm="ngForm" (ngSubmit)="submitForm(bugForm.value)" >
+    <div class="container">
+        <mat-form-field>
+          <input
+          ngModel
+          name="bugTitle"
+          #bugTitle = "ngModel"
+          required
+          minlength="3"
+          matInput placeholder="Title">
+        </mat-form-field>
+
+      <div class="alert alert-danger" *ngIf="bugTitle.touched && !bugTitle.valid">
+          <div *ngIf="bugTitle?.errors.required">
+              Title is required</div>
+          <div *ngIf="bugTitle?.errors.minlength">
+              Title should be minimum {{bugTitle?.errors.minlength.requiredLength}} characters</div>
+      </div>
+
+    <mat-form-field>
+        <textarea
+        ngModel
+        name="bugDescription"
+        #bugDescription="ngModel"
+        required
+        matInput placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <div class="alert alert-danger" *ngIf="bugDescription.touched && !bugDescription.valid">
+        <div *ngIf="bugDescription?.errors.required">
+            Description is required</div>
+    </div>
+
+    <mat-form-field>
+        <mat-select
+        ngModel
+        name="bugPriority"
+        #bugPriority="ngModel"
+        required
+        placeholder="Priority">
+          <mat-option value="1">Minor</mat-option>
+          <mat-option value="2">Major</mat-option>
+          <mat-option value="3">Critical</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="alert alert-danger" *ngIf="bugPriority.touched && !bugPriority.valid">
+        <div *ngIf="bugPriority?.errors.required">
+            Priority is required</div>
+    </div>
+
+    <mat-form-field>
+        <mat-select
+        ngModel
+        name="bugReporter"
+        #bugReporter="ngModel"
+        required
+        placeholder="Reporter" required>
+          <mat-option value="QA">QA</mat-option>
+          <mat-option value="PO">PO</mat-option>
+          <mat-option value="DEV">DEV</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="alert alert-danger" *ngIf="bugReporter.touched && !bugReporter.valid">
+        <div *ngIf="bugReporter?.errors.required">
+            Reporter is required</div>
+    </div>
+
+    <mat-form-field>
+        <mat-select
+        ngModel
+        name="bugStatus"
+        #bugStatus="ngModel"
+        required
+        placeholder="Status" required>
+          <mat-option value="Ready for test">Ready for test</mat-option>
+          <mat-option value="Done">Done</mat-option>
+          <mat-option value="Rejected">Rejected</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="alert alert-danger" *ngIf="bugStatus.touched && !bugStatus.valid">
+        <div *ngIf="bugStatus?.errors.required">
+            Description is required</div>
+    </div>
+
+    <button mat-raised-button color="primary" [disabled]="!bugForm.valid">Submit</button>
+    <p>{{bugForm.value | json}}</p>
+  </div>
+</form>
