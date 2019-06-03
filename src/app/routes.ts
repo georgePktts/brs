@@ -6,6 +6,6 @@ import { FormBugComponent } from './modules/user-story-2/form-bug/form-bug/form-
 
 export const routes: Routes = [
   { path: '', component: ShowBugsComponent },
-  { path: 'newbug', component: FormBugComponent },
-  { path: 'editbug/:id', component: FormBugComponent }
+  { path: 'bug', component: FormBugComponent },
+  { path: 'bug/:id', component: FormBugComponent }
    ];

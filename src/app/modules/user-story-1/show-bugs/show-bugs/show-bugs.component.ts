@@ -16,7 +16,7 @@ export class ShowBugsComponent implements OnInit {
   isAsc = false;
   columnName: string;
 
-  constructor(private bugService: ShowBugsService,private router: Router) { }
+  constructor(private bugService: ShowBugsService, private router: Router) { }
 
   ngOnInit() {
     this.bugService.getBugs().subscribe((data) => {
@@ -38,11 +38,8 @@ export class ShowBugsComponent implements OnInit {
     });
   }
 
-  GoToEdit(id){
-
-    this.router.navigate(['editbug',id]);
-    this.bugService.getBugById(id);
-
+  goToEdit(id) {
+    this.router.navigate(['bug', id]);
   }
 
 }

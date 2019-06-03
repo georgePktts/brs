@@ -1,8 +1,8 @@
-<form #bugForm="ngForm" (ngSubmit)="submitForm(bugForm.value)" >
+<form *ngIf="!isNewBug && bugs$ | async; else loading" #bugForm="ngForm" (ngSubmit)="submitForm(bugForm.value)" >
     <div class="container">
         <mat-form-field>
           <input
-          [(ngModel)] = bugs[0].title
+          [ngModel] = '(bugs$ | async)?.title'
           name="bugTitle"
           #bugTitle = "ngModel"
           required
@@ -19,7 +19,7 @@
 
     <mat-form-field>
         <textarea
-        [(ngModel)] = bugs[0].description
+        [ngModel] = '(bugs$ | async)?.description'
         name="bugDescription"
         #bugDescription="ngModel"
         required
@@ -33,7 +33,7 @@
 
     <mat-form-field>
         <mat-select
-        [(ngModel)] = bugs[0].priority
+        [ngModel] = '(bugs$ | async)?.priority.toString()'
         name="bugPriority"
         #bugPriority="ngModel"
         required
@@ -51,7 +51,7 @@
 
     <mat-form-field>
         <mat-select
-        [(ngModel)] = bugs[0].reporter
+        [ngModel] = '(bugs$ | async)?.reporter'
         name="bugReporter"
         #bugReporter="ngModel"
         required
@@ -69,7 +69,7 @@
 
     <mat-form-field>
         <mat-select
-        [(ngModel)] = bugs[0].status
+        [ngModel] = '(bugs$ | async)?.status'
         name="bugStatus"
         #bugStatus="ngModel"
         required
@@ -89,3 +89,7 @@
     <p>{{bugForm.value | json}}</p>
   </div>
 </form>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

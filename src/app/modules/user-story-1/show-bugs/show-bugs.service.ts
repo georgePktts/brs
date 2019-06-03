@@ -32,8 +32,8 @@ export class ShowBugsService {
     });
   }
 
-  getBugById(id): Observable<BugInfo[]> {
-    return this.http.get<BugInfo[]>(this.endpointUrl+"/"+id);
+  getBugById(id): Observable<BugInfo> {
+    return this.http.get<BugInfo>(this.endpointUrl + '/' + id);
   }
 
 }

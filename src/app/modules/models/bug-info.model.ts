@@ -1,4 +1,3 @@
-
 export interface BugInfo {
   title: string;
   description?: string;
@@ -8,4 +7,3 @@ export interface BugInfo {
   status: string;
   id?: string;
 }
-
