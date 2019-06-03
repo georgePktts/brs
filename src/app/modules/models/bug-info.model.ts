@@ -6,5 +6,6 @@ export interface BugInfo {
   reporter: string;
   createdAt: string;
   status: string;
+  id?: string;
 }
 

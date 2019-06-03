@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BugInfo } from '../../../models/bug-info.model';
 import { ShowBugsService } from '../show-bugs.service';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-bugs',
@@ -14,7 +16,7 @@ export class ShowBugsComponent implements OnInit {
   isAsc = false;
   columnName: string;
 
-  constructor(private bugService: ShowBugsService) {}
+  constructor(private bugService: ShowBugsService,private router: Router) { }
 
   ngOnInit() {
     this.bugService.getBugs().subscribe((data) => {
@@ -34,6 +36,13 @@ export class ShowBugsComponent implements OnInit {
       this.bugs = data;
       this.isAsc = (this.isAsc) ? false : true;
     });
+  }
+
+  GoToEdit(id){
+
+    this.router.navigate(['editbug',id]);
+    this.bugService.getBugById(id);
+
   }
 
 }

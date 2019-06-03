@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BugInfo } from 'src/app/modules/models/bug-info.model';
 import { ShowBugsService } from 'src/app/modules/user-story-1/show-bugs/show-bugs.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form-bug',
@@ -9,9 +10,20 @@ import { ShowBugsService } from 'src/app/modules/user-story-1/show-bugs/show-bug
 })
 export class FormBugComponent implements OnInit {
 
-  constructor(private bugService: ShowBugsService) { }
+  hfdhfd="1";
+  myId: number;
+  bugs: BugInfo[];
+
+  constructor(private bugService: ShowBugsService,private route: ActivatedRoute) {
+
+    this.myId = this.route.snapshot.params['id'];
+
+  }
 
   ngOnInit() {
+
+
+
   }
 
   submitForm(formValue) {
@@ -25,8 +37,9 @@ export class FormBugComponent implements OnInit {
       createdAt: dateTimeCreated.toString(),
       status: formValue.bugStatus
     };
-    console.log(newBug);
+
     this.bugService.createBugs(newBug);
   }
+
 
 }
