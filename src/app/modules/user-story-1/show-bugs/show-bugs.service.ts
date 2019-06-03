@@ -36,4 +36,10 @@ export class ShowBugsService {
     return this.http.get<BugInfo>(this.endpointUrl + '/' + id);
   }
 
+  updateBug(newBug,id) {
+    this.http.put(this.endpointUrl + '/' + id, newBug).subscribe(responseData => {
+      console.log(responseData);
+    });
+  }
+
 }

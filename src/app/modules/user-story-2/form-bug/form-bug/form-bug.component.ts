@@ -3,6 +3,7 @@ import { BugInfo } from 'src/app/modules/models/bug-info.model';
 import { ShowBugsService } from 'src/app/modules/user-story-1/show-bugs/show-bugs.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-bug',
@@ -14,7 +15,7 @@ export class FormBugComponent implements OnInit {
   id: number;
   bugs$: Observable<BugInfo>;
 
-  constructor(private bugService: ShowBugsService, private route: ActivatedRoute) { }
+  constructor(private bugService: ShowBugsService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -39,7 +40,13 @@ export class FormBugComponent implements OnInit {
       status: formValue.bugStatus
     };
 
-    this.bugService.createBugs(newBug);
+    if (this.id) {
+      this.bugService.updateBug(newBug,this.id);
+    } else {
+      this.bugService.createBugs(newBug);
+    }
+    this.router.navigate(['']);
+
   }
 
 

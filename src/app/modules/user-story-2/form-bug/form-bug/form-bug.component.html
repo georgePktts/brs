@@ -1,4 +1,4 @@
-<form *ngIf="!isNewBug && bugs$ | async; else loading" #bugForm="ngForm" (ngSubmit)="submitForm(bugForm.value)" >
+<form *ngIf="bugs$ | async; else loading" #bugForm="ngForm" (ngSubmit)="submitForm(bugForm.value)" >
     <div class="container">
         <mat-form-field>
           <input
@@ -86,7 +86,6 @@
     </div>
 
     <button mat-raised-button color="primary" [disabled]="!bugForm.valid">Submit</button>
-    <p>{{bugForm.value | json}}</p>
   </div>
 </form>
 
