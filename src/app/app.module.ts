@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent
   ],
   imports: [
-    RouterModule.forRoot(routes, {useHash: false}),
+    RouterModule.forRoot(routes, {useHash: false, onSameUrlNavigation: 'reload'}),
     BrowserModule,
     AppRoutingModule,
     ShowBugsModule,
