@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BugInfo } from 'src/app/modules/models/bug-info.model';
 import { ShowBugsService } from 'src/app/modules/user-story-1/show-bugs/show-bugs.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { Comment } from '../../../models/comment.model';
+import { Subscription } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-form-bug',
   templateUrl: './form-bug.component.html',
   styleUrls: ['./form-bug.component.css']
 })
-export class FormBugComponent implements OnInit {
+export class FormBugComponent implements OnInit, OnDestroy {
 
   isCreate = true;
   isGetComplete = false;
   id: number;
   bugs: BugInfo;
+  subscription: Subscription;
 
   constructor(private bugService: ShowBugsService, private route: ActivatedRoute, private router: Router) { }
 
@@ -23,12 +27,10 @@ export class FormBugComponent implements OnInit {
     this.isCreate = (this.id) ? false : true;
 
     if (!this.isCreate) {
-      this.bugService.getBugById(this.id).subscribe(data => {this.bugs = data; this.isGetComplete = true;});
+      this.subscription = this.bugService.getBugById(this.id).subscribe(data => {this.bugs = data; this.isGetComplete = true; });
     } else {
       this.isGetComplete = true;
-      // this.bugs$ = of({title: '', priority: 0, reporter: '', status: '', description: '', createdAt: ''});
     }
-
   }
 
   submitForm(formValue) {
@@ -40,29 +42,37 @@ export class FormBugComponent implements OnInit {
       priority: formValue.bugPriority,
       reporter: formValue.bugReporter,
       createdAt: dateTimeCreated.toString(),
-      status: formValue.bugStatus
+      status: formValue.bugStatus,
+      comments: this.bugs.comments
     };
 
     if (this.id) {
+
       this.bugService.updateBug(newBug, this.id);
     } else {
       this.bugService.createBugs(newBug);
     }
     this.router.navigate(['']);
-
   }
 
-  submitComment(formValue) {
-
+  submitComment(form: NgForm) {
     const newComment: Comment = {
-      reporter: formValue.commentReporter,
-      description: formValue.commentDescription
+      reporter: form.value.commentReporter,
+      description: form.value.commentDescription
     };
 
-    this.bugs.comments.push(newComment);
+    if (this.bugs.comments) {
+      this.bugs.comments.push(newComment);
+    } else {
+      this.bugs.comments = [newComment];
+    }
 
     this.bugService.updateBug(this.bugs, this.id);
-    this.router.navigate(['bugs', this.id]);
+    form.resetForm();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) { this.subscription.unsubscribe(); }
   }
 
 }

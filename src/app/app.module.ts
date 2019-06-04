@@ -12,15 +12,12 @@ import { NavigationModule } from './modules/navigation/navigation.module';
 // Angural Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    RouterModule.forRoot(routes, {useHash: false, onSameUrlNavigation: 'reload'}),
+    RouterModule.forRoot(routes, {useHash: false}),
     BrowserModule,
     AppRoutingModule,
     ShowBugsModule,
