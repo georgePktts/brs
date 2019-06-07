@@ -1,6 +1,7 @@
 
 <section class="container">
-  <h3 *ngIf="isCreate;" class="mb-4">Create Bug</h3>
+
+  <h3 *ngIf="isCreate;" class="mb-4">Report Bug</h3>
   <h3 *ngIf="!isCreate;" class="mb-4">Edit Bug</h3>
 
   <form *ngIf="isGetComplete; else loading" #bugForm="ngForm" (ngSubmit)="submitForm(bugForm.value)" autocomplete="off">

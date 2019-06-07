@@ -11,12 +11,19 @@ import { NavigationModule } from './modules/navigation/navigation.module';
 
 // Angural Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// Ng Bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
+// tslint:disable-next-line: deprecation
+    NgbModule.forRoot(),
     RouterModule.forRoot(routes, {useHash: false}),
     BrowserModule,
     AppRoutingModule,

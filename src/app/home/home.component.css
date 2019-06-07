@@ -1,0 +1,24 @@
+.title {
+  display: inline-block;
+  color:#FFF;
+  background: #2f519c;
+  width:100%;
+  text-align: center;
+  font-weight: 600;
+}
+
+.box {
+  border:3px solid #2f519c;
+  padding: 3px;
+}
+
+.subtitle {
+    font-size: 25px;
+    font-style: normal;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.highlight {
+  color:#2f519c;
+}
