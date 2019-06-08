@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+<!-- <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
   <a class="navbar-brand" (click)="goToRoute('')">
      <img src="assets/img/logo.png">
   </a>
@@ -6,14 +6,14 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link nav-link1 active" id="nav-link1" (click)="goToRoute(''); navClick('nav-link1')" ><span>Home</span> <span class="sr-only">(current)</span></a>
+        <a class="nav-link nav-link1" id="nav-link1" routerLinkActive="active current" [routerLink]="['']"><span>Home</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link nav-link2" id="nav-link2" (click)="goToRoute('display'); navClick('nav-link2')"><span>Bug List</span></a>
+        <a class="nav-link nav-link2" id="nav-link2" routerLinkActive="active current" [routerLink]="['/display']"><span>Bug List</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link nav-link3" id="nav-link3" (click)="goToRoute('bug'); navClick('nav-link3')"><span>Report Bug</span></a>
-      </li>
+        <a class="nav-link nav-link3" id="nav-link3" routerLinkActive="active current" [routerLink]="['/bug']"><span>Report Bug</span></a>
+      </li> -->
 
       <!-- <li ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01"
@@ -25,12 +25,34 @@
           <a class="dropdown-item">Log Out</a>
         </div>
       </li> -->
-    </ul>
+    <!-- </ul> -->
     <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form> -->
+  <!-- </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow mb-5">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['']"><img src="assets/img/logo.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop"
+      aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTop">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active current" [routerLink]="['/display']">Bug List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active current" [routerLink]="['/bug']">Report Bug</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active current" [routerLink]="['/about']">About</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
-
-

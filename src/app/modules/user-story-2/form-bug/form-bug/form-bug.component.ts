@@ -66,7 +66,7 @@ export class FormBugComponent implements OnInit, OnDestroy {
     } else {
       this.bugs.comments = [newComment];
     }
-
+    // σθβσψριγε ηερε
     this.bugService.updateBug(this.bugs, this.id);
     form.resetForm();
   }

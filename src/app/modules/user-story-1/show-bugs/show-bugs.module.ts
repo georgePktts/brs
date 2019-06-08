@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShowBugsComponent } from './show-bugs/show-bugs.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 // Angular Material
 import { MatSortModule, MatTableModule } from '@angular/material';
@@ -10,7 +11,8 @@ import { MatSortModule, MatTableModule } from '@angular/material';
   imports: [
     CommonModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ],
   exports: [ShowBugsComponent]
 })

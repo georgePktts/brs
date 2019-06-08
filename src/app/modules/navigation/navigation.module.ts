@@ -6,6 +6,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [NavigationComponent],
@@ -13,7 +14,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     CommonModule,
     MatToolbarModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    RouterModule
   ],
   exports: [NavigationComponent]
 })

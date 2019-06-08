@@ -19,13 +19,4 @@ export class NavigationComponent implements OnInit {
     this.router.navigate([path]);
   }
 
-  navClick(nav_item) {
-    console.log(nav_item);
-
-    document.getElementById('nav-link1').classList.remove('active');
-    document.getElementById('nav-link2').classList.remove('active');
-    document.getElementById('nav-link3').classList.remove('active');
-
-    document.getElementById(nav_item).classList.add('active');
-  }
 }

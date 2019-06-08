@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BugInfo } from '../../../models/bug-info.model';
 import { ShowBugsService } from '../show-bugs.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { MatPaginator, MatTableDataSource, PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-show-bugs',
@@ -16,13 +17,17 @@ export class ShowBugsComponent implements OnInit {
   isAsc = false;
   columnName: string;
 
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageEvent: PageEvent;
+
   constructor(private bugService: ShowBugsService, private router: Router) { }
 
   ngOnInit() {
     this.bugService.getBugs().subscribe((data) => {
       this.bugs = data;
-      console.log(data);
     });
+    console.log(this.bugs);
   }
 
   getBugsSorted(event) {

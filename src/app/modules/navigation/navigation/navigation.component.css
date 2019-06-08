@@ -1,12 +1,12 @@
-.nav-link, .navbar-brand {
+/* .nav-link, .navbar-brand {
   cursor: pointer;
  }
 
-
+*/
 .navbar-light .navbar-nav .nav-link:hover {
   color:#2f519c;
 }
-
+/*
 .navbar-light .navbar-nav .nav-link {
   color:black;
 }
@@ -26,10 +26,7 @@
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.07);
   border-bottom: 1px solid #f0f0f0;
 }
-
-
+*/
 li.nav-item a.nav-link.active{
   color: #2f519c !important;
 }
-
-
