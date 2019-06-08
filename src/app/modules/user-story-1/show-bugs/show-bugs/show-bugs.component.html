@@ -1,3 +1,5 @@
+
+
 <table matSort matSortDisableClear="true" class="table table-hover">
   <thead>
     <tr>
@@ -16,7 +18,7 @@
       <td>{{bug.reporter}}</td>
       <td>{{bug.createdAt | date}}</td>
       <td>{{bug.status}}</td>
-      <td><button type="button" (click)="goToEdit(bug.id)">Edit</button></td>
+      <td><button type="button" class="btn" (click)="goToEdit(bug.id)"><span class="fa fa-edit"></span></button></td>
     </tr>
   </tbody>
 </table>

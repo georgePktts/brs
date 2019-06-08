@@ -12,7 +12,7 @@ import { NavigationModule } from './modules/navigation/navigation.module';
 // Angural Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Ng Bootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 
 
@@ -23,7 +23,7 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
 // tslint:disable-next-line: deprecation
-    NgbModule.forRoot(),
+    // NgbModule.forRoot(),
     RouterModule.forRoot(routes, {useHash: false}),
     BrowserModule,
     AppRoutingModule,
