@@ -13,17 +13,18 @@ export class ShowBugsService {
 
   constructor(private http: HttpClient) { }
 
-  getBugs(sortBy?, orderBy?): Observable<BugInfo[]> {
+  getBugs(sortBy?: string, orderBy?: boolean, pageIndex = 0): Observable<BugInfo[]> {
 
     const direction: string = (orderBy) ? 'asc' : 'desc';
 
+
     switch (sortBy) {
-      case 'Title': return this.http.get<BugInfo[]>(this.endpointUrl + '?sort=title,' + direction);
-      case 'Priority': return this.http.get<BugInfo[]>(this.endpointUrl + '?sort=priority,' + direction);
-      case 'Reporter': return this.http.get<BugInfo[]>(this.endpointUrl + '?sort=reporter,' + direction);
-      case 'Date Created': return this.http.get<BugInfo[]>(this.endpointUrl + '?sort=createdAt,' + direction);
-      case 'Status': return this.http.get<BugInfo[]>(this.endpointUrl + '?sort=status,' + direction);
-      default: return this.http.get<BugInfo[]>(this.endpointUrl);
+      case 'Title': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=title,' + direction);
+      case 'Priority': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=priority,' + direction);
+      case 'Reporter': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=reporter,' + direction);
+      case 'Date Created': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=createdAt,' + direction);
+      case 'Status': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=status,' + direction);
+      default: return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex);
     }
   }
 

@@ -16,6 +16,7 @@ export class ShowBugsComponent implements OnInit {
   bugs: BugInfo[];
   isAsc = false;
   columnName: string;
+  pageIndex = 0;
 
   constructor(private bugService: ShowBugsService, private router: Router) { }
 
@@ -30,6 +31,7 @@ export class ShowBugsComponent implements OnInit {
     if (this.columnName !== event) {
       this.columnName = event;
       this.isAsc = false;
+      this.pageIndex = 0;
     }
 
     this.bugService.getBugs(event, this.isAsc).subscribe((data) => {
@@ -40,6 +42,23 @@ export class ShowBugsComponent implements OnInit {
 
   goToEdit(id) {
     this.router.navigate(['bug', id]);
+  }
+
+  getPage(str: string) {
+    if (str === 'previous') {
+      this.pageIndex--;
+      if (this.pageIndex < 0) {
+        this.pageIndex = 0;
+      }
+    } else  {
+      this.pageIndex++;
+      if (this.bugs.length < 10) {
+        this.pageIndex--;
+      }
+    }
+    this.bugService.getBugs(this.columnName, this.isAsc, this.pageIndex).subscribe(data => {
+      this.bugs = data;
+    });
   }
 
 }
