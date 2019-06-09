@@ -17,18 +17,11 @@ export class ShowBugsComponent implements OnInit {
   isAsc = false;
   columnName: string;
 
-  displayedColumns: string[] = ['title', 'priority', 'reporter', 'createdAt' , 'status', 'edit'];
-  dataSource;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
   constructor(private bugService: ShowBugsService, private router: Router) { }
 
   ngOnInit() {
     this.bugService.getBugs().subscribe((data) => {
       this.bugs = data;
-      this.dataSource = new MatTableDataSource<BugInfo>(data);
-      this.dataSource.paginator = this.paginator;
     });
   }
 
@@ -41,7 +34,6 @@ export class ShowBugsComponent implements OnInit {
 
     this.bugService.getBugs(event, this.isAsc).subscribe((data) => {
       this.bugs = data;
-      this.dataSource = new MatTableDataSource<BugInfo>(data);
       this.isAsc = (this.isAsc) ? false : true;
     });
   }

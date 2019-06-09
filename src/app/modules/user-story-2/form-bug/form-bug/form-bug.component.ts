@@ -48,14 +48,13 @@ export class FormBugComponent implements OnInit, OnDestroy {
 
     if (this.id) {
       this.bugService.updateBug(this.id, this.bugs).subscribe((data) => {
-        console.log(data);
+        this.router.navigate(['display']);
       });
     } else {
       this.bugService.createBugs(newBug).subscribe((data) => {
-        console.log(data);
+        this.router.navigate(['display']);
       });
     }
-    this.router.navigate(['display']);
   }
 
   submitComment(form: NgForm) {
