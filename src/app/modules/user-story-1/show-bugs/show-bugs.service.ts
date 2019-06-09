@@ -28,19 +28,15 @@ export class ShowBugsService {
   }
 
   createBugs(newBug: BugInfo) {
-    this.http.post(this.endpointUrl , newBug).subscribe(responseData => {
-      console.log(responseData);
-    });
+    return this.http.post(this.endpointUrl + '/' , newBug);
   }
 
   getBugById(id): Observable<BugInfo> {
     return this.http.get<BugInfo>(this.endpointUrl + '/' + id);
   }
 
-  updateBug(newBug, id) {
-    this.http.put(this.endpointUrl + '/' + id, newBug).subscribe(responseData => {
-      console.log(responseData);
-    });
+  updateBug(id: number, newBug: BugInfo): Observable<any> {
+    return this.http.put(this.endpointUrl + '/' + id, newBug);
   }
 
 }

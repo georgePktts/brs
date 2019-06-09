@@ -43,16 +43,19 @@ export class FormBugComponent implements OnInit, OnDestroy {
       reporter: formValue.bugReporter,
       createdAt: dateTimeCreated.toString(),
       status: formValue.bugStatus,
-      comments: this.bugs.comments
+      comments: (this.bugs) ? this.bugs.comments : null
     };
 
     if (this.id) {
-
-      this.bugService.updateBug(newBug, this.id);
+      this.bugService.updateBug(this.id, this.bugs).subscribe((data) => {
+        console.log(data);
+      });
     } else {
-      this.bugService.createBugs(newBug);
+      this.bugService.createBugs(newBug).subscribe((data) => {
+        console.log(data);
+      });
     }
-    this.router.navigate(['']);
+    this.router.navigate(['display']);
   }
 
   submitComment(form: NgForm) {
@@ -67,7 +70,9 @@ export class FormBugComponent implements OnInit, OnDestroy {
       this.bugs.comments = [newComment];
     }
     // σθβσψριγε ηερε
-    this.bugService.updateBug(this.bugs, this.id);
+    this.bugService.updateBug(this.id, this.bugs).subscribe((data) => {
+      console.log(data);
+    });
     form.resetForm();
   }
 

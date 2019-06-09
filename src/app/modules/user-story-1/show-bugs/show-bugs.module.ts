@@ -5,9 +5,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 // Angular Material
 import { MatSortModule, MatTableModule } from '@angular/material';
+import { ShortenTextPipe } from './shorten-text.pipe';
 
 @NgModule({
-  declarations: [ShowBugsComponent],
+  declarations: [ShowBugsComponent, ShortenTextPipe],
   imports: [
     CommonModule,
     MatSortModule,

@@ -14,12 +14,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Ng Bootstrap
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
+import { ShortenPipePipe } from './shorten-pipe.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ShortenPipePipe
   ],
   imports: [
 // tslint:disable-next-line: deprecation

@@ -17,17 +17,19 @@ export class ShowBugsComponent implements OnInit {
   isAsc = false;
   columnName: string;
 
-  pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
-  pageEvent: PageEvent;
+  displayedColumns: string[] = ['title', 'priority', 'reporter', 'createdAt' , 'status', 'edit'];
+  dataSource;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private bugService: ShowBugsService, private router: Router) { }
 
   ngOnInit() {
     this.bugService.getBugs().subscribe((data) => {
       this.bugs = data;
+      this.dataSource = new MatTableDataSource<BugInfo>(data);
+      this.dataSource.paginator = this.paginator;
     });
-    console.log(this.bugs);
   }
 
   getBugsSorted(event) {
@@ -39,6 +41,7 @@ export class ShowBugsComponent implements OnInit {
 
     this.bugService.getBugs(event, this.isAsc).subscribe((data) => {
       this.bugs = data;
+      this.dataSource = new MatTableDataSource<BugInfo>(data);
       this.isAsc = (this.isAsc) ? false : true;
     });
   }
