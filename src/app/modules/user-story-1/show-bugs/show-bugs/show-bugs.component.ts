@@ -34,9 +34,9 @@ export class ShowBugsComponent implements OnInit {
       this.pageIndex = 0;
     }
 
+    this.isAsc = (this.isAsc) ? false : true;
     this.bugService.getBugs(event, this.isAsc).subscribe((data) => {
       this.bugs = data;
-      this.isAsc = (this.isAsc) ? false : true;
     });
   }
 
@@ -56,6 +56,7 @@ export class ShowBugsComponent implements OnInit {
         this.pageIndex--;
       }
     }
+
     this.bugService.getBugs(this.columnName, this.isAsc, this.pageIndex).subscribe(data => {
       this.bugs = data;
     });
