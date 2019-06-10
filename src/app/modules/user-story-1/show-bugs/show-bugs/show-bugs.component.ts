@@ -31,10 +31,11 @@ export class ShowBugsComponent implements OnInit {
     if (this.columnName !== event) {
       this.columnName = event;
       this.isAsc = false;
-      this.pageIndex = 0;
     }
 
+    this.pageIndex = 0;
     this.isAsc = (this.isAsc) ? false : true;
+
     this.bugService.getBugs(event, this.isAsc).subscribe((data) => {
       this.bugs = data;
     });

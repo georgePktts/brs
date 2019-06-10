@@ -20,6 +20,6 @@
     </tr>
   </tbody>
 
-  <button type="button" [disabled]="this.pageIndex === 0" (click)="getPage('previous')">Previous</button>
+  <button type="button" [disabled]="this.pageIndex <= 0" (click)="getPage('previous')">Previous</button>
   <button type="button" [disabled]="(this.bugs)?.length === 0 || (this.bugs)?.length < 10" (click)="getPage('next')">Next</button>
 </table>

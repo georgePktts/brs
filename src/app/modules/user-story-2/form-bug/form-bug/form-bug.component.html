@@ -72,13 +72,14 @@
     <!-- </div> -->
   </form>
 
-  <div class="row">
-    <div class="col-2 offset-5">
-      <ng-template #loading>
+  <ng-template #loading>
+    <div class="row">
+      <div class="col-2 offset-5">
         <mat-spinner></mat-spinner>
-      </ng-template>
+      </div>
     </div>
-  </div>
+  </ng-template>
+
 </section>
 
 <section *ngIf="!isCreate && isGetComplete" class="my-5 container mat-elevation-z4">
