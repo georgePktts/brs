@@ -16,10 +16,12 @@ export class ShowBugsComponent implements OnInit {
   isAsc = false;
   columnName: string;
   pageIndex = 0;
-  // searchBug = {searchTitle: null,
-  //             searchPriority: null,
-  //             searchReporter: null,
-  //             searchStatus: null};
+  searchBug = {
+    title: '',
+    priority: 0,
+    reporter: '',
+    status: ''
+  };
 
   constructor(private bugService: ShowBugsService, private router: Router) { }
 
@@ -39,7 +41,7 @@ export class ShowBugsComponent implements OnInit {
     this.pageIndex = 0;
     this.isAsc = (this.isAsc) ? false : true;
 
-    this.bugService.getBugs(event, this.isAsc).subscribe((data) => {
+    this.bugService.getBugs(event, this.isAsc, 0, this.searchBug).subscribe((data) => {
       this.bugs = data;
     });
   }
@@ -61,21 +63,20 @@ export class ShowBugsComponent implements OnInit {
       }
     }
 
-    this.bugService.getBugs(this.columnName, this.isAsc, this.pageIndex).subscribe(data => {
+    this.bugService.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug).subscribe(data => {
       this.bugs = data;
     });
   }
 
   searchBugs(formValue) {
-    const searchBug: BugInfo = {
+    this.searchBug = {
       title: formValue.searchTitle,
       priority: formValue.searchPriority,
       reporter: formValue.searchReporter,
       status: formValue.searchStatus
     };
 
-
-    this.bugService.getBugs(this.columnName, this.isAsc, this.pageIndex, searchBug).subscribe(data => {
+    this.bugService.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug).subscribe(data => {
       this.bugs = data;
     });
 
