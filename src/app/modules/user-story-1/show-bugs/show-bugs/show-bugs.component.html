@@ -1,4 +1,18 @@
-<table matSort matSortDisableClear="true" class="table table-hover mat-elevation-z4">
+
+<section class="mat-elevation-z4">
+<form #searchForm="ngForm" (ngSubmit)="searchBugs(searchForm.value)" class="form-inline">
+  <input class="form-control" type="text" name="searchTitle" #searchTitle="ngModel" ngModel placeholder="Search Title">
+  <input class="form-control" type="text" name="searchPriority" #searchPriority="ngModel" ngModel  placeholder="Search Priority">
+  <input class="form-control" type="text" name="searchReporter" #searchReporter="ngModel" ngModel placeholder="Search Reporter">
+  <input class="form-control" type="text" placeholder="Search Date Created" disabled>
+  <input class="form-control" type="text" name="searchStatus" #searchStatus="ngModel" ngModel placeholder="Search Status">
+  <button>Search</button>
+</form>
+
+<br>
+<br>
+
+<table matSort matSortDisableClear="true" class="table table-hover">
   <thead>
     <tr>
       <th mat-sort-header="title" (click)="getBugsSorted('Title')">Title</th>
@@ -23,3 +37,5 @@
   <button type="button" [disabled]="this.pageIndex <= 0" (click)="getPage('previous')">Previous</button>
   <button type="button" [disabled]="(this.bugs)?.length === 0 || (this.bugs)?.length < 10" (click)="getPage('next')">Next</button>
 </table>
+
+</section>

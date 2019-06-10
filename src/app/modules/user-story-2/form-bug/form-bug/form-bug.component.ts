@@ -19,6 +19,7 @@ export class FormBugComponent implements OnInit, OnDestroy {
   id: number;
   bugs: BugInfo;
   subscription: Subscription;
+  
 
   constructor(private bugService: ShowBugsService, private route: ActivatedRoute, private router: Router) { }
 

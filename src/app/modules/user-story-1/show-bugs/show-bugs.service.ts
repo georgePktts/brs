@@ -13,18 +13,36 @@ export class ShowBugsService {
 
   constructor(private http: HttpClient) { }
 
-  getBugs(sortBy?: string, orderBy?: boolean, pageIndex = 0): Observable<BugInfo[]> {
+  getBugs(sortBy?: string, orderBy?: boolean, pageIndex = 0, searchBy?): Observable<BugInfo[]> {
 
     const direction: string = (orderBy) ? 'asc' : 'desc';
 
+    let searchUrl = '';
+
+    if (searchBy) {
+      if (searchBy.title) {
+        searchUrl += '&title=' + searchBy.title;
+      }
+      if (searchBy.priority) {
+        searchUrl += '&priority=' + searchBy.priority;
+      }
+      if (searchBy.reporter) {
+        searchUrl += '&reporter=' + searchBy.reporter;
+      }
+      if (searchBy.status) {
+        searchUrl += '&status=' + searchBy.status;
+      }
+    }
+
+    console.log('url: ' + searchUrl);
 
     switch (sortBy) {
-      case 'Title': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=title,' + direction);
-      case 'Priority': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=priority,' + direction);
-      case 'Reporter': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=reporter,' + direction);
+      case 'Title': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=title,' + direction + searchUrl);
+      case 'Priority': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=priority,' + direction + searchUrl);
+      case 'Reporter': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=reporter,' + direction + searchUrl);
       case 'Date Created': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=createdAt,' + direction);
-      case 'Status': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=status,' + direction);
-      default: return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex);
+      case 'Status': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=status,' + direction + searchUrl);
+      default: return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + searchUrl);
     }
   }
 
