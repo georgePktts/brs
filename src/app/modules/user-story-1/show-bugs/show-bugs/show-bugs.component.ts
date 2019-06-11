@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { BugInfo } from '../../../models/bug-info.model';
 import { ShowBugsService } from '../show-bugs.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { toUnicode } from 'punycode';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-show-bugs',
@@ -11,12 +12,13 @@ import { toUnicode } from 'punycode';
   styleUrls: ['./show-bugs.component.css']
 })
 
-export class ShowBugsComponent implements OnInit {
+export class ShowBugsComponent implements OnInit, OnDestroy {
 
   bugs: BugInfo[];
   isAsc = false;
   columnName: string;
   pageIndex = 0;
+  subscription: Subscription;
   searchBug = {
     title: '',
     priority: 0,
@@ -27,9 +29,7 @@ export class ShowBugsComponent implements OnInit {
   constructor(private bugService: ShowBugsService, private router: Router) { }
 
   ngOnInit() {
-    this.bugService.getBugs().subscribe((data) => {
-      this.bugs = data;
-    });
+    this.getBugs();
   }
 
   getBugsSorted(event) {
@@ -42,9 +42,7 @@ export class ShowBugsComponent implements OnInit {
     this.pageIndex = 0;
     this.isAsc = (this.isAsc) ? false : true;
 
-    this.bugService.getBugs(event, this.isAsc, 0, this.searchBug).subscribe((data) => {
-      this.bugs = data;
-    });
+    this.getBugs(event, this.isAsc, 0, this.searchBug);
   }
 
   goToEdit(id) {
@@ -64,9 +62,7 @@ export class ShowBugsComponent implements OnInit {
       }
     }
 
-    this.bugService.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug).subscribe(data => {
-      this.bugs = data;
-    });
+    this.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug);
   }
 
   searchBugs(form: NgForm) {
@@ -77,13 +73,20 @@ export class ShowBugsComponent implements OnInit {
       status: form.value.searchStatus
     };
 
-    this.bugService.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug).subscribe(data => {
+    this.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug);
+  }
+
+  resetSearchingForm(form: NgForm) {
+    form.resetForm();
+  }
+
+  getBugs(columnname?: string, isAsc?: boolean, pageIndex = 0, searchBug?) {
+    this.subscription = this.bugService.getBugs(columnname, isAsc, pageIndex, searchBug).subscribe(data => {
       this.bugs = data;
     });
   }
 
-  resetSearchingForm(form :NgForm){
-    form.resetForm();
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
-
 }

@@ -18,8 +18,11 @@ export class FormBugComponent implements OnInit, OnDestroy {
   isGetComplete = false;
   id: number;
   bugs: BugInfo;
-  subscription: Subscription;
-  
+  subscriptionGetById: Subscription;
+  subscriptionCreate: Subscription;
+  subscriptionUpdateBug: Subscription;
+  subscriptionUpdateComment: Subscription;
+
 
   constructor(private bugService: ShowBugsService, private route: ActivatedRoute, private router: Router) { }
 
@@ -28,7 +31,7 @@ export class FormBugComponent implements OnInit, OnDestroy {
     this.isCreate = (this.id) ? false : true;
 
     if (!this.isCreate) {
-      this.subscription = this.bugService.getBugById(this.id).subscribe(data => {this.bugs = data; this.isGetComplete = true; });
+      this.subscriptionGetById = this.bugService.getBugById(this.id).subscribe(data => {this.bugs = data; this.isGetComplete = true; });
     } else {
       this.isGetComplete = true;
     }
@@ -48,11 +51,11 @@ export class FormBugComponent implements OnInit, OnDestroy {
     };
 
     if (this.id) {
-      this.bugService.updateBug(this.id, this.bugs).subscribe((data) => {
+      this.subscriptionUpdateBug = this.bugService.updateBug(this.id, newBug).subscribe((data) => {
         this.router.navigate(['display']);
       });
     } else {
-      this.bugService.createBugs(newBug).subscribe((data) => {
+      this.subscriptionCreate = this.bugService.createBugs(newBug).subscribe((data) => {
         this.router.navigate(['display']);
       });
     }
@@ -69,15 +72,16 @@ export class FormBugComponent implements OnInit, OnDestroy {
     } else {
       this.bugs.comments = [newComment];
     }
-    // σθβσψριγε ηερε
-    this.bugService.updateBug(this.id, this.bugs).subscribe((data) => {
-      console.log(data);
-    });
+
+    this.subscriptionUpdateComment = this.bugService.updateBug(this.id, this.bugs).subscribe((data) => { });
     form.resetForm();
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) { this.subscription.unsubscribe(); }
+    if (this.subscriptionGetById) { this.subscriptionGetById.unsubscribe(); }
+    if (this.subscriptionCreate) { this.subscriptionCreate.unsubscribe(); }
+    if (this.subscriptionUpdateBug) { this.subscriptionUpdateBug.unsubscribe(); }
+    if (this.subscriptionUpdateComment) { this.subscriptionUpdateComment.unsubscribe(); }
   }
 
 }
