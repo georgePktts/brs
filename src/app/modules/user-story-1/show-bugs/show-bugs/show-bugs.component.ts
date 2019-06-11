@@ -3,6 +3,7 @@ import { BugInfo } from '../../../models/bug-info.model';
 import { ShowBugsService } from '../show-bugs.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { toUnicode } from 'punycode';
 
 @Component({
   selector: 'app-show-bugs',
@@ -68,21 +69,21 @@ export class ShowBugsComponent implements OnInit {
     });
   }
 
-  searchBugs(formValue) {
+  searchBugs(form: NgForm) {
     this.searchBug = {
-      title: formValue.searchTitle,
-      priority: formValue.searchPriority,
-      reporter: formValue.searchReporter,
-      status: formValue.searchStatus
+      title: form.value.searchTitle,
+      priority: form.value.searchPriority,
+      reporter: form.value.searchReporter,
+      status: form.value.searchStatus
     };
 
     this.bugService.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug).subscribe(data => {
       this.bugs = data;
     });
+  }
 
-
-
-
+  resetSearchingForm(form :NgForm){
+    form.resetForm();
   }
 
 }
