@@ -66,6 +66,11 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
   }
 
   searchBugs(form: NgForm) {
+    if (this.searchBug.title !== form.value.searchTitle) { this.pageIndex = 0; }
+    if (this.searchBug.priority !== form.value.searchPriority) { this.pageIndex = 0; }
+    if (this.searchBug.reporter !== form.value.searchReporter) { this.pageIndex = 0; }
+    if (this.searchBug.status !== form.value.searchStatus) { this.pageIndex = 0; }
+
     this.searchBug = {
       title: form.value.searchTitle,
       priority: form.value.searchPriority,
