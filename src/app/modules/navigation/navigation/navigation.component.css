@@ -30,3 +30,7 @@
 li.nav-item a.nav-link.active{
   color: #2f519c !important;
 }
+
+.mb-5, .my-5 {
+  margin-bottom: 5rem !important;
+}
