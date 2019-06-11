@@ -3,8 +3,8 @@
  }
 
 */
-.navbar-light .navbar-nav .nav-link:hover {
-  color:#2f519c;
+.navbar-light .navbar-nav .nav-link {
+  font-weight: bold;
 }
 /*
 .navbar-light .navbar-nav .nav-link {
@@ -33,4 +33,7 @@ li.nav-item a.nav-link.active{
 
 .mb-5, .my-5 {
   margin-bottom: 5rem !important;
+}
+div.container-fluid{
+  margin: -16px;
 }
