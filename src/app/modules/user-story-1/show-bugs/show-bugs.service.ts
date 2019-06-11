@@ -34,8 +34,6 @@ export class ShowBugsService {
       }
     }
 
-    console.log('url: ' + searchUrl);
-
     switch (sortBy) {
       case 'Title': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=title,' + direction + searchUrl);
       case 'Priority': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=priority,' + direction + searchUrl);
@@ -50,12 +48,16 @@ export class ShowBugsService {
     return this.http.post(this.endpointUrl + '/' , newBug);
   }
 
-  getBugById(id): Observable<BugInfo> {
+  getBugById(id: string): Observable<BugInfo> {
     return this.http.get<BugInfo>(this.endpointUrl + '/' + id);
   }
 
   updateBug(id: number, newBug: BugInfo): Observable<any> {
     return this.http.put(this.endpointUrl + '/' + id, newBug);
+  }
+
+  deleteBugs(id: string) {
+    return this.http.delete(this.endpointUrl + '/' + id);
   }
 
 }

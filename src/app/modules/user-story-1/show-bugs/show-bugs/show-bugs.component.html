@@ -21,6 +21,7 @@
       <th mat-sort-header="createdAt" (click)="getBugsSorted('Date Created')">Date Created</th>
       <th mat-sort-header="status" (click)="getBugsSorted('Status')">Status</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +32,7 @@
       <td>{{bug.createdAt | date}}</td>
       <td>{{bug.status}}</td>
       <td><button type="button" class="btn" (click)="goToEdit(bug.id)"><span class="fa fa-edit"></span></button></td>
+      <td><button type="button" class="btn btnDelete" (click)="goToDelete(bug.id)"><span class="fa fa-trash"></span></button></td>
     </tr>
   </tbody>
   <button type="button" class="btn3" [disabled]="this.pageIndex <= 0" (click)="getPage('previous')"><span class="fa fa-arrow-left"></span></button>

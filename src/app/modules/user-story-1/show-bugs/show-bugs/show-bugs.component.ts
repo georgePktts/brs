@@ -19,6 +19,7 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
   columnName: string;
   pageIndex = 0;
   subscription: Subscription;
+  subscriptionDelete: Subscription;
   searchBug = {
     title: '',
     priority: 0,
@@ -89,6 +90,12 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
     this.subscription = this.bugService.getBugs(columnname, isAsc, pageIndex, searchBug).subscribe(data => {
       this.bugs = data;
     });
+  }
+
+  goToDelete(id: string) {
+    this.subscriptionDelete = this.bugService.deleteBugs(id).subscribe(data =>
+      this.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug)
+    );
   }
 
   ngOnDestroy(): void {

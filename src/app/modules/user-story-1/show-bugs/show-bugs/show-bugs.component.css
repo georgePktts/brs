@@ -23,6 +23,10 @@ th {
   position: relative;
 }
 
+.btnDelete {
+  background: red;
+}
+
 .btn span{
   display: block;
   font-size: 20px;
