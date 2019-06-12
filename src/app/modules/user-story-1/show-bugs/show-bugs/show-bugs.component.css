@@ -129,16 +129,16 @@ table {
   color: #2f519c;
   overflow: hidden;
   position: relative;
-  left: 400px;
+  left: 390px;
   border-width: 0px;
-  top: 2px;
+  top: 12px;
 }
 
 .btn3 span{
   display: block;
   font-size: 20px;
-  left: 6px;
-  top: 6px;
+  left: 7px;
+  top: 4px;
   font-weight: 500;
   position: absolute;
 }
@@ -157,20 +157,24 @@ table {
   color: #2f519c;
   overflow: hidden;
   position: relative;
-  left: 492px;
+  left: 470px;
   border-width: 0px;
-  top: -28px;
+  top: -18px;
 }
 
 .btn4 span{
   display: block;
   font-size: 20px;
-  left: 6px;
-  top: 6px;
+  left: 7px;
+  top: 4px;
   font-weight: 500;
   position: absolute;
 }
 
 .btn4:hover{
   transform: scale(1.2);
+}
+
+tfoot {
+  background: #2f519c;
 }

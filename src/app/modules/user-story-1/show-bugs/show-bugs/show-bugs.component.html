@@ -35,8 +35,14 @@
       <td><button type="button" class="btn btnDelete" (click)="goToDelete(bug.id)"><span class="fa fa-trash"></span></button></td>
     </tr>
   </tbody>
-  <button type="button" class="btn3" [disabled]="this.pageIndex <= 0" (click)="getPage('previous')"><span class="fa fa-arrow-left"></span></button>
-  <button type="button" class="btn4" [disabled]="(this.bugs)?.length === 0 || (this.bugs)?.length < 10" (click)="getPage('next')"><span class="fa fa-arrow-right"></span></button>
-</table>
+  <tfoot>
+    <tr>
+      <td colspan="7">
+        <button type="button" class="btn3" [disabled]="this.pageIndex <= 0" (click)="getPage('previous')"><span class="fa fa-arrow-left"></span></button>
+        <button type="button" class="btn4" [disabled]="(this.bugs)?.length === 0 || (this.bugs)?.length < 10" (click)="getPage('next')"><span class="fa fa-arrow-right"></span></button>
+      </td>
+    </tr>
+  </tfoot>
+ </table>
 
 </section>

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BugInfo } from '../../models/bug-info.model';
 import { Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +47,7 @@ export class ShowBugsService {
     return this.http.post(this.endpointUrl + '/' , newBug);
   }
 
-  getBugById(id: string): Observable<BugInfo> {
+  getBugById(id): Observable<BugInfo> {
     return this.http.get<BugInfo>(this.endpointUrl + '/' + id);
   }
 
