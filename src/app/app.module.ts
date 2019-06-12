@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShowBugsModule } from './modules/user-story-1/show-bugs/show-bugs.module';
@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { ShortenPipePipe } from './shorten-pipe.pipe';
+import { AuthorizationInterceptor } from './Interceptors/authorization-interceptor.service';
 
 
 @NgModule({
@@ -35,7 +36,13 @@ import { ShortenPipePipe } from './shorten-pipe.pipe';
     FormBugModule,
     NavigationModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthorizationInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -38,7 +38,8 @@ export class ShowBugsService {
       case 'Title': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=title,' + direction + searchUrl);
       case 'Priority': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=priority,' + direction + searchUrl);
       case 'Reporter': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=reporter,' + direction + searchUrl);
-      case 'Date Created': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=createdAt,' + direction + searchUrl);
+      case 'Date Created': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=createdAt,'
+       + direction + searchUrl);
       case 'Status': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=status,' + direction + searchUrl);
       default: return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + searchUrl);
     }
@@ -48,7 +49,7 @@ export class ShowBugsService {
     return this.http.post(this.endpointUrl + '/' , newBug);
   }
 
-  getBugById(id: string): Observable<BugInfo> {
+  getBugById(id): Observable<BugInfo> {
     return this.http.get<BugInfo>(this.endpointUrl + '/' + id);
   }
 
