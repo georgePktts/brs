@@ -123,7 +123,7 @@ table {
   display: block;
   width: 30px;
   height: 30px;
-  background: whitesmoke;
+  background: grey;
   border-radius: 25%;
   box-shadow: 0px 5px 12px -5px black;
   color: #2f519c;
@@ -143,15 +143,16 @@ table {
   position: absolute;
 }
 
-.btn3:hover{
+.btn3:hover:enabled{
   transform: scale(1.2);
+  background: whitesmoke;
 }
 
 .btn4{
   display: block;
   width: 30px;
   height: 30px;
-  background: whitesmoke;
+  background: grey;
   border-radius: 25%;
   box-shadow: 0px 5px 12px -5px black;
   color: #2f519c;
@@ -171,8 +172,9 @@ table {
   position: absolute;
 }
 
-.btn4:hover{
+.btn4:hover:enabled{
   transform: scale(1.2);
+  background: whitesmoke;
 }
 
 tfoot {
