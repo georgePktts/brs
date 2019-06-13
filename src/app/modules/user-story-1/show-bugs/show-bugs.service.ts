@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BugInfo } from '../../models/bug-info.model';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ export class ShowBugsService {
 
   private readonly endpointUrl = 'https://bug-report-system-server.herokuapp.com/bugs';
 
-  constructor(private http: HttpClient) { }
+  result;
+
+  constructor(private http: HttpClient,private router: Router) { }
 
   getBugs(sortBy?: string, orderBy?: boolean, pageIndex = 0, searchBy?): Observable<BugInfo[]> {
 
@@ -58,6 +61,16 @@ export class ShowBugsService {
 
   deleteBugs(id: string) {
     return this.http.delete(this.endpointUrl + '/' + id);
+  }
+
+  call_http(id: string) {
+    this.http.get<BugInfo>(this.endpointUrl + '/' + id).subscribe(data => {
+      this.result = data;
+    },
+      err => {
+        this.router.navigate(['display']);
+        alert("There is not a bug with id: "+id+" in the bug list!")
+      });
   }
 
 }
