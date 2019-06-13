@@ -1,75 +1,90 @@
 <section class="container mat-elevation-z4">
-
-  <h3 *ngIf="isCreate;" class="mb-4">Report Bug</h3>
-  <h3 *ngIf="!isCreate;" class="mb-4">Edit Bug</h3>
+    <div class="header mat-elevation-z2">
+        <h3 *ngIf="isCreate;">Report Bug</h3>
+        <h3 *ngIf="!isCreate;">Edit Bug</h3>
+    </div>
 
   <form *ngIf="isGetComplete; else loading" #bugForm="ngForm" (ngSubmit)="submitForm(bugForm.value)" autocomplete="off">
     <!-- <div class="container"> -->
-    <mat-form-field>
-      <input [ngModel]='bugs?.title' name="bugTitle" #bugTitle="ngModel" required minlength="3" matInput
-        placeholder="Title">
-    </mat-form-field><br>
+      <table class="reportForm">
+        <tr>
+          <td colspan="3">
+            <mat-form-field>
+                <input [ngModel]='bugs?.title' name="bugTitle" #bugTitle="ngModel" required minlength="3" matInput
+                  placeholder="Title">
+              </mat-form-field><br>
 
-    <div class="alert alert-danger w-50" *ngIf="bugTitle.touched && !bugTitle.valid">
-      <div *ngIf="bugTitle?.errors.required">
-        Title is required</div>
-      <div *ngIf="bugTitle?.errors.minlength">
-        Title should be minimum {{bugTitle?.errors.minlength.requiredLength}} characters</div>
-    </div>
+              <div class="alert alert-danger" *ngIf="bugTitle.touched && !bugTitle.valid">
+                <div *ngIf="bugTitle?.errors.required">
+                  Title is required</div>
+                <div *ngIf="bugTitle?.errors.minlength">
+                  Title should be minimum {{bugTitle?.errors.minlength.requiredLength}} characters</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="selectTd">
+            <mat-form-field>
+              <mat-select [ngModel]='bugs?.priority.toString()' name="bugPriority" #bugPriority="ngModel" required
+                placeholder="Priority" required>
+                <mat-option value="1">Minor</mat-option>
+                <mat-option value="2">Major</mat-option>
+                <mat-option value="3">Critical</mat-option>
+              </mat-select>
+            </mat-form-field><br>
 
-    <mat-form-field>
-      <textarea [ngModel]='bugs?.description' name="bugDescription" #bugDescription="ngModel" required matInput
-        placeholder="Description"></textarea>
-    </mat-form-field><br>
+            <div class="alert alert-danger" *ngIf="bugPriority.touched && !bugPriority.valid">
+              <div *ngIf="bugPriority?.errors.required">
+                Priority is required</div>
+            </div>
+          </td>
+          <td class="selectTd">
+            <mat-form-field>
+              <mat-select [ngModel]='bugs?.reporter' name="bugReporter" #bugReporter="ngModel" required placeholder="Reporter"
+                required>
+                <mat-option value="QA">QA</mat-option>
+                <mat-option value="PO">PO</mat-option>
+                <mat-option value="DEV">DEV</mat-option>
+              </mat-select>
+            </mat-form-field><br>
 
-    <div class="alert alert-danger" *ngIf="bugDescription.touched && !bugDescription.valid">
-      <div *ngIf="bugDescription?.errors.required">
-        Description is required</div>
-    </div>
+            <div class="alert alert-danger" *ngIf="bugReporter.touched && !bugReporter.valid">
+              <div *ngIf="bugReporter?.errors.required">
+                Reporter is required</div>
+            </div>
+          </td>
+          <td class="selectTd">
+            <mat-form-field>
+                <mat-select [ngModel]='bugs?.status' name="bugStatus" #bugStatus="ngModel" required placeholder="Status" required>
+                  <mat-option value="Ready for test">Ready for test</mat-option>
+                  <mat-option value="Done">Done</mat-option>
+                  <mat-option value="Rejected">Rejected</mat-option>
+                </mat-select>
+              </mat-form-field><br>
 
-    <mat-form-field>
-      <mat-select [ngModel]='bugs?.priority.toString()' name="bugPriority" #bugPriority="ngModel" required
-        placeholder="Priority" required>
-        <mat-option value="1">Minor</mat-option>
-        <mat-option value="2">Major</mat-option>
-        <mat-option value="3">Critical</mat-option>
-      </mat-select>
-    </mat-form-field><br>
+              <div class="alert alert-danger" *ngIf="bugStatus.touched && !bugStatus.valid">
+                <div *ngIf="bugStatus?.errors.required">
+                  Status is required</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <mat-form-field>
+                <textarea [ngModel]='bugs?.description' name="bugDescription" #bugDescription="ngModel" required matInput
+                  placeholder="Description" rows="5"></textarea>
+              </mat-form-field><br>
 
-    <div class="alert alert-danger" *ngIf="bugPriority.touched && !bugPriority.valid">
-      <div *ngIf="bugPriority?.errors.required">
-        Priority is required</div>
-    </div>
-
-    <mat-form-field>
-      <mat-select [ngModel]='bugs?.reporter' name="bugReporter" #bugReporter="ngModel" required placeholder="Reporter"
-        required>
-        <mat-option value="QA">QA</mat-option>
-        <mat-option value="PO">PO</mat-option>
-        <mat-option value="DEV">DEV</mat-option>
-      </mat-select>
-    </mat-form-field><br>
-
-    <div class="alert alert-danger" *ngIf="bugReporter.touched && !bugReporter.valid">
-      <div *ngIf="bugReporter?.errors.required">
-        Reporter is required</div>
-    </div>
-
-    <mat-form-field>
-      <mat-select [ngModel]='bugs?.status' name="bugStatus" #bugStatus="ngModel" required placeholder="Status" required>
-        <mat-option value="Ready for test">Ready for test</mat-option>
-        <mat-option value="Done">Done</mat-option>
-        <mat-option value="Rejected">Rejected</mat-option>
-      </mat-select>
-    </mat-form-field><br>
-
-    <div class="alert alert-danger" *ngIf="bugStatus.touched && !bugStatus.valid">
-      <div *ngIf="bugStatus?.errors.required">
-        Status is required</div>
-    </div>
-
-    <button mat-raised-button color="primary" [disabled]="!bugForm.valid || bugForm.pristine">Submit</button>
-    <!-- </div> -->
+              <div class="alert alert-danger" *ngIf="bugDescription.touched && !bugDescription.valid">
+                <div *ngIf="bugDescription?.errors.required">
+                  Description is required</div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div align="center">
+          <button mat-raised-button color="primary" [disabled]="!bugForm.valid || bugForm.pristine">Submit</button>
+      </div>
   </form>
 
   <ng-template #loading>
@@ -82,11 +97,13 @@
 
 </section>
 
-<section *ngIf="!isCreate && isGetComplete" class="my-5 container mat-elevation-z4">
-  <h3 class="mb-4">Comment Section</h3>
 
+<section *ngIf="!isCreate && isGetComplete" class="my-5 container mat-elevation-z4">
+    <div class="header mat-elevation-z2">
+        <h3>Comment Section</h3>
+    </div>
   <div *ngFor="let comment of bugs?.comments; let idx=index">
-    <mat-card class="mb-3 mat-elevation-z4">
+    <mat-card class="mb-3 mat-elevation-z2">
       <mat-card-content class="mb-2">{{ comment?.reporter }} added a comment.</mat-card-content>
       <mat-card-content class="mb-1">{{ comment?.description }}</mat-card-content>
       <mat-card-subtitle>#{{ idx + 1 }}</mat-card-subtitle>
@@ -94,27 +111,36 @@
   </div>
 
   <form #commentForm="ngForm" (ngSubmit)="submitComment(commentForm)">
+    <table class="commentTable">
+      <tr>
+        <td colspan="3">
+          <mat-form-field>
+              <input ngModel name="commentReporter" #commentReporter="ngModel" required matInput placeholder="Reporter"
+                autocomplete="off">
+            </mat-form-field>
 
-    <mat-form-field>
-      <input ngModel name="commentReporter" #commentReporter="ngModel" required matInput placeholder="Reporter"
-        autocomplete="off">
-    </mat-form-field>
+            <div class="alert alert-danger" *ngIf="commentReporter.touched && !commentReporter.valid">
+              <div *ngIf="commentReporter?.errors.required">
+                Reporter is required</div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <mat-form-field>
+              <textarea ngModel name="commentDescription" #commentDescription="ngModel" rows="4" required matInput
+                placeholder="Description"></textarea>
+            </mat-form-field>
 
-    <div class="alert alert-danger" *ngIf="commentReporter.touched && !commentReporter.valid">
-      <div *ngIf="commentReporter?.errors.required">
-        Reporter is required</div>
+            <div class="alert alert-danger" *ngIf="commentDescription.touched && !commentDescription.valid">
+              <div *ngIf="commentDescription?.errors.required">
+                Description is required</div>
+            </div>
+        </td>
+      </tr>
+    </table>
+    <div align="center">
+        <button mat-raised-button color="primary" [disabled]="!commentForm.valid">Add comment</button>
     </div>
-
-    <mat-form-field>
-      <textarea ngModel name="commentDescription" #commentDescription="ngModel" rows="4" required matInput
-        placeholder="Description"></textarea>
-    </mat-form-field>
-
-    <div class="alert alert-danger" *ngIf="commentDescription.touched && !commentDescription.valid">
-      <div *ngIf="commentDescription?.errors.required">
-        Description is required</div>
-    </div>
-
-    <button mat-raised-button color="primary" [disabled]="!commentForm.valid">Add comment</button>
   </form>
 </section>
