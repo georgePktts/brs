@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Comment } from '../../../models/comment.model';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { checkServerIdentity } from 'tls';
 
 @Component({
   selector: 'app-form-bug',
@@ -29,6 +30,7 @@ export class FormBugComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isCreate = (this.id) ? false : true;
+    this.bugService.call_http(this.id.toString());
 
     if (!this.isCreate) {
       this.subscriptionGetById = this.bugService.getBugById(this.id).subscribe(data => {this.bugs = data; this.isGetComplete = true; });
