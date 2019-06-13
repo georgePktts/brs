@@ -93,9 +93,11 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
   }
 
   goToDelete(id: string) {
-    this.subscriptionDelete = this.bugService.deleteBugs(id).subscribe(data =>
-      this.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug)
-    );
+    if (confirm('Are you sure you want to delete this bug?')) {
+      this.subscriptionDelete = this.bugService.deleteBugs(id).subscribe(data =>
+        this.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug)
+      );
+    }
   }
 
   ngOnDestroy(): void {

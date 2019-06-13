@@ -13,7 +13,6 @@ export class AuthorizationInterceptor implements HttpInterceptor {
     req = req.clone({setHeaders: {Authorization: 'code.hub.ng5.token'}});
 
     return next.handle(req).pipe( map((event: HttpEvent<any>) => {
-      console.log('event:' + event);
       return event;
     }));
   }
