@@ -63,13 +63,13 @@ export class ShowBugsService {
     return this.http.delete(this.endpointUrl + '/' + id);
   }
 
-  call_http(id: string) {
+  call_http(id) {
     this.http.get<BugInfo>(this.endpointUrl + '/' + id).subscribe(data => {
       this.result = data;
     },
       err => {
-        this.router.navigate(['display']);
-        alert("There is not a bug with id: "+id+" in the bug list!")
+        if (id==""){this.router.navigate(['display']);
+        alert("There is not a bug with id: "+id+" in the bug list!")}
       });
   }
 
