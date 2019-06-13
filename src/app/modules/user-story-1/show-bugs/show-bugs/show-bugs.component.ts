@@ -84,6 +84,8 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
 
   resetSearchingForm(form: NgForm) {
     form.resetForm();
+    this.pageIndex = 0;
+    this.getBugs(this.columnName, this.isAsc, this.pageIndex);
   }
 
   getBugs(columnname?: string, isAsc?: boolean, pageIndex = 0, searchBug?) {
