@@ -13,7 +13,7 @@ export class ShowBugsService {
 
   result;
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   getBugs(sortBy?: string, orderBy?: boolean, pageIndex = 0, searchBy?): Observable<BugInfo[]> {
 
@@ -61,16 +61,6 @@ export class ShowBugsService {
 
   deleteBugs(id: string) {
     return this.http.delete(this.endpointUrl + '/' + id);
-  }
-
-  call_http(id) {
-    this.http.get<BugInfo>(this.endpointUrl + '/' + id).subscribe(data => {
-      this.result = data;
-    },
-      err => {
-        if (id==""){this.router.navigate(['display']);
-        alert("There is not a bug with id: "+id+" in the bug list!")}
-      });
   }
 
 }

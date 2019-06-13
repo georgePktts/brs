@@ -30,7 +30,6 @@ export class FormBugComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isCreate = (this.id) ? false : true;
-    this.bugService.call_http(this.id);
 
     if (!this.isCreate) {
       this.subscriptionGetById = this.bugService.getBugById(this.id).subscribe(data => {this.bugs = data; this.isGetComplete = true; });
