@@ -17,7 +17,7 @@ describe('FormBugComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ],
       imports: [ FormsModule, RouterTestingModule.withRoutes(
-          [ {path: 'bug', component: FormBugComponent} ]
+          [ {path: '', component: FormBugComponent} ]
         ),
         HttpClientModule,
         FormBugModule,
@@ -45,12 +45,9 @@ describe('FormBugComponent', () => {
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      console.log('FORM : ' + form);
-      console.log('FORM.VALID : ' + form.valid);
-      console.log('FORM.INVALID : ' + form.invalid);
+      expect(form.invalid).toBeTruthy();
     });
 
-    // expect(form.valid).toBeFalsy();
   });
 
 });

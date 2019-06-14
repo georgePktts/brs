@@ -6,6 +6,10 @@
   margin-right: 0px;
 }
 
+form {
+  font-family: sans-serif;
+}
+
 th {
   background: #2f519c;
   color: whitesmoke;
