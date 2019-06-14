@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BugInfo } from '../../models/bug-info.model';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,6 @@ import { Router } from '@angular/router';
 export class ShowBugsService {
 
   private readonly endpointUrl = 'https://bug-report-system-server.herokuapp.com/bugs';
-
-  result;
 
   constructor(private http: HttpClient) { }
 

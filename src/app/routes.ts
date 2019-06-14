@@ -10,5 +10,6 @@ export const routes: Routes = [
   { path: 'about', component: HomeComponent },
   { path: 'display', component: ShowBugsComponent },
   { path: 'bug', component: FormBugComponent },
-  { path: 'bug/:id', component: FormBugComponent }
+  { path: 'bug/:id', component: FormBugComponent },
+  { path: '**', component: HomeComponent }
    ];

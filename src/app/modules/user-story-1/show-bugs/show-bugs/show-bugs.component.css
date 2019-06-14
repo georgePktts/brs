@@ -53,7 +53,7 @@ table {
   margin-left: 12px;
 }
 
-.btn2{
+.btnRefresh{
   display: block;
   width: 30px;
   height: 30px;
@@ -67,11 +67,11 @@ table {
   border-width: 0px;
 }
 
-.btn2:hover{
+.btnRefresh:hover{
   transform: scale(1.2);
 }
 
-.btn2 span{
+.btnRefresh span{
   display: block;
   font-size: 20px;
   left: 6px;
@@ -80,7 +80,7 @@ table {
   position: absolute;
 }
 
-.btn2 span:hover{
+.btnRefresh span:hover{
   animation: rotate 0.8s infinite;
 }
 
@@ -92,7 +92,7 @@ table {
   100% { transform: rotate(360deg); }
 }
 
-.btn1{
+.btnSearch{
   display: block;
   width: 30px;
   height: 30px;
@@ -106,7 +106,7 @@ table {
   border-width: 0px;
 }
 
-.btn1 span{
+.btnSearch span{
   display: block;
   font-size: 20px;
   left: 6px;
@@ -115,15 +115,15 @@ table {
   position: absolute;
 }
 
-.btn1:hover{
+.btnSearch:hover{
   transform: scale(1.2);
 }
 
-.btn3{
+.btnBack{
   display: block;
   width: 30px;
   height: 30px;
-  background: grey;
+  background: whitesmoke;
   border-radius: 25%;
   box-shadow: 0px 5px 12px -5px black;
   color: #2f519c;
@@ -134,7 +134,7 @@ table {
   top: 12px;
 }
 
-.btn3 span{
+.btnBack span{
   display: block;
   font-size: 20px;
   left: 7px;
@@ -143,16 +143,24 @@ table {
   position: absolute;
 }
 
-.btn3:hover:enabled{
+.btnBack:hover:enabled{
   transform: scale(1.2);
   background: whitesmoke;
 }
 
-.btn4{
+.btnBack:hover:enabled{
+  transform: scale(1.2);
+}
+
+.btnBack:disabled{
+  background-color: #cccccc;
+}
+
+.btnNext{
   display: block;
   width: 30px;
   height: 30px;
-  background: grey;
+  background: whitesmoke;
   border-radius: 25%;
   box-shadow: 0px 5px 12px -5px black;
   color: #2f519c;
@@ -163,7 +171,7 @@ table {
   top: -18px;
 }
 
-.btn4 span{
+.btnNext span{
   display: block;
   font-size: 20px;
   left: 7px;
@@ -172,9 +180,12 @@ table {
   position: absolute;
 }
 
-.btn4:hover:enabled{
+.btnNext:hover:enabled{
   transform: scale(1.2);
-  background: whitesmoke;
+}
+
+.btnNext:disabled{
+  background-color: #cccccc;
 }
 
 tfoot {
