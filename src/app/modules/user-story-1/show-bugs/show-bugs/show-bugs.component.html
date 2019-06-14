@@ -1,48 +1,68 @@
-
 <section class="mat-elevation-z4">
-<form #searchForm="ngForm" (ngSubmit)="searchBugs(searchForm)" class="form-inline">
-  <input class="form-control" type="text" name="searchTitle" #searchTitle="ngModel" ngModel placeholder="Search Title">
-  <input class="form-control" type="text" name="searchPriority" #searchPriority="ngModel" ngModel  placeholder="Search Priority">
-  <input class="form-control" type="text" name="searchReporter" #searchReporter="ngModel" ngModel placeholder="Search Reporter">
-  <input class="form-control" type="text" name="searchStatus" #searchStatus="ngModel" ngModel placeholder="Search Status">
-  <button class="btnSearch"><span class="fa fa-search"></span></button>
-  <button type="button" class="btnRefresh" (click)="resetSearchingForm(searchForm)"><span class="fa fa-refresh"></span></button>
-</form>
+  <form #searchForm="ngForm" (ngSubmit)="searchBugs(searchForm)" class="form-inline">
+    <input class="form-control" type="text" name="searchTitle" #searchTitle="ngModel" ngModel
+      placeholder="Search Title">
+    <select class="form-control" name="searchPriority" #searchPriority="ngModel" ngModel >
+      <option value="" disabled hidden>Search Priority</option>
+      <option value="1" >Minor</option>
+      <option value="2" >Major</option>
+      <option value="3" >Critical</option>
+    </select>
+    <select class="form-control" name="searchReporter" #searchReporter="ngModel" ngModel>
+      <option value="" disabled hidden>Search Reporter</option>
+      <option value="QA">QA</option>
+      <option value="PO">PO</option>
+      <option value="DEV">DEV</option>
+    </select>
+    <select class="form-control" name="searchStatus" #searchStatus="ngModel" ngModel>
+      <option value="" disabled hidden>Search Status</option>
+      <option value="Ready for test">Ready for test</option>
+      <option value="Done">Done</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+    <button class="btnSearch"><span class="fa fa-search"></span></button>
+    <button type="button" class="btnRefresh" (click)="resetSearchingForm(searchForm)"><span
+        class="fa fa-refresh"></span></button>
+  </form>
 
-<br>
-<br>
+  <br>
+  <br>
 
-<table matSort matSortDisableClear="true" class="table table-hover">
-  <thead>
-    <tr>
-      <th mat-sort-header="title" (click)="getBugsSorted('Title')">Title</th>
-      <th mat-sort-header="priority" (click)="getBugsSorted('Priority')">Priority</th>
-      <th mat-sort-header="reported" (click)="getBugsSorted('Reporter')">Reporter</th>
-      <th mat-sort-header="createdAt" (click)="getBugsSorted('Date Created')">Date Created</th>
-      <th mat-sort-header="status" (click)="getBugsSorted('Status')">Status</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let bug of bugs">
-      <td>{{bug.title}}</td>
-      <td>{{bug.priority}}</td>
-      <td>{{bug.reporter}}</td>
-      <td>{{bug.createdAt | date}}</td>
-      <td>{{bug.status}}</td>
-      <td><button type="button" class="btn" (click)="goToEdit(bug.id)"><span class="fa fa-edit"></span></button></td>
-      <td><button type="button" class="btn btnDelete" (click)="goToDelete(bug.id)"><span class="fa fa-trash"></span></button></td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="7">
-        <button type="button" class="btnBack" [disabled]="this.pageIndex <= 0" (click)="getPage('previous')"><span class="fa fa-arrow-left"></span></button>
-        <button type="button" class="btnNext" [disabled]="(this.bugs)?.length === 0 || (this.bugs)?.length < 10" (click)="getPage('next')"><span class="fa fa-arrow-right"></span></button>
-      </td>
-    </tr>
-  </tfoot>
- </table>
+  <table matSort matSortDisableClear="true" class="table table-hover">
+    <thead>
+      <tr>
+        <th mat-sort-header="title" (click)="getBugsSorted('Title')">Title</th>
+        <th mat-sort-header="priority" (click)="getBugsSorted('Priority')">Priority</th>
+        <th mat-sort-header="reported" (click)="getBugsSorted('Reporter')">Reporter</th>
+        <th mat-sort-header="createdAt" (click)="getBugsSorted('Date Created')">Date Created</th>
+        <th mat-sort-header="status" (click)="getBugsSorted('Status')">Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bug of bugs">
+        <td>{{bug.title}}</td>
+        <td>{{bug.priority}}</td>
+        <td>{{bug.reporter}}</td>
+        <td>{{bug.createdAt | date}}</td>
+        <td>{{bug.status}}</td>
+        <td><button type="button" class="btn btnEdit" (click)="goToEdit(bug.id)"><span
+              class="fa fa-edit"></span></button></td>
+        <td><button type="button" class="btn btnEdit btnDelete" (click)="goToDelete(bug.id)"><span
+              class="fa fa-trash"></span></button></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="7">
+          <button type="button" class="btnBack" [disabled]="this.pageIndex <= 0" (click)="getPage('previous')"><span
+              class="fa fa-arrow-left"></span></button>
+          <button type="button" class="btnNext" [disabled]="(this.bugs)?.length === 0 || (this.bugs)?.length < 10"
+            (click)="getPage('next')"><span class="fa fa-arrow-right"></span></button>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 
 </section>

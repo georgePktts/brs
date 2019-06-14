@@ -6,12 +6,16 @@
   margin-right: 0px;
 }
 
+form {
+  font-family: sans-serif;
+}
+
 th {
   background: #2f519c;
   color: whitesmoke;
 }
 
-.btn {
+.btnEdit {
   display: block;
   width: 30px;
   height: 30px;
@@ -27,7 +31,7 @@ th {
   background: red;
 }
 
-.btn span{
+.btnEdit span{
   display: block;
   font-size: 20px;
   left: 6px;
@@ -36,7 +40,7 @@ th {
   position: absolute;
 }
 
-.btn:hover{
+.btnEdit:hover{
   transform: scale(1.4);
 }
 
