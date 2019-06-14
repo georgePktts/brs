@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { BugInfo } from 'src/app/modules/models/bug-info.model';
 import { ShowBugsService } from 'src/app/modules/user-story-1/show-bugs/show-bugs.service';
 import { ActivatedRoute } from '@angular/router';
@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { Comment } from '../../../models/comment.model';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { checkServerIdentity } from 'tls';
 
 @Component({
   selector: 'app-form-bug',
@@ -24,13 +23,13 @@ export class FormBugComponent implements OnInit, OnDestroy {
   subscriptionUpdateBug: Subscription;
   subscriptionUpdateComment: Subscription;
 
+  @ViewChild(NgForm) ngForm: NgForm;
 
   constructor(private bugService: ShowBugsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isCreate = (this.id) ? false : true;
-
     if (!this.isCreate) {
       this.subscriptionGetById = this.bugService.getBugById(this.id).subscribe(data => {this.bugs = data; this.isGetComplete = true; },
         err => { if (err.status === 500 ) {

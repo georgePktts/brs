@@ -5,7 +5,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 
 // Angular Material
-import { MatSortModule, MatTableModule } from '@angular/material';
+import { MatSortModule, MatTableModule, MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
 import { ShortenTextPipe } from './shorten-text.pipe';
 
 @NgModule({
@@ -15,7 +15,10 @@ import { ShortenTextPipe } from './shorten-text.pipe';
     MatSortModule,
     MatTableModule,
     MatPaginatorModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],
   exports: [ShowBugsComponent]
 })

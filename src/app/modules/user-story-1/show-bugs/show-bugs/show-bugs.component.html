@@ -2,7 +2,14 @@
 <section class="mat-elevation-z4">
 <form #searchForm="ngForm" (ngSubmit)="searchBugs(searchForm)" class="form-inline">
   <input class="form-control" type="text" name="searchTitle" #searchTitle="ngModel" ngModel placeholder="Search Title">
-  <input class="form-control" type="text" name="searchPriority" #searchPriority="ngModel" ngModel  placeholder="Search Priority">
+  <!-- <mat-form-field> -->
+    <select class="form-control" type="text" ngModel name="searchPriority" #searchPriority="ngModel" placeholder="Search Priority">
+      <option value="" default selected>Select your option</option>
+      <option value="1">Minor</option>
+      <option value="2">Major</option>
+      <option value="3">Critical</option>
+    </select>
+  <!-- </mat-form-field> -->
   <input class="form-control" type="text" name="searchReporter" #searchReporter="ngModel" ngModel placeholder="Search Reporter">
   <input class="form-control" type="text" name="searchStatus" #searchStatus="ngModel" ngModel placeholder="Search Status">
   <button class="btnSearch"><span class="fa fa-search"></span></button>
@@ -31,8 +38,8 @@
       <td>{{bug.reporter}}</td>
       <td>{{bug.createdAt | date}}</td>
       <td>{{bug.status}}</td>
-      <td><button type="button" class="btn" (click)="goToEdit(bug.id)"><span class="fa fa-edit"></span></button></td>
-      <td><button type="button" class="btn btnDelete" (click)="goToDelete(bug.id)"><span class="fa fa-trash"></span></button></td>
+      <td><button type="button" class="btn btnEdit" (click)="goToEdit(bug.id)"><span class="fa fa-edit"></span></button></td>
+      <td><button type="button" class="btn btnEdit btnDelete" (click)="goToDelete(bug.id)"><span class="fa fa-trash"></span></button></td>
     </tr>
   </tbody>
   <tfoot>
