@@ -79,6 +79,9 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
       status: form.value.searchStatus
     };
 
+    console.log('Form: ' + form.value.searchPriority);
+    console.log(this.searchBug);
+
     this.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug);
   }
 
