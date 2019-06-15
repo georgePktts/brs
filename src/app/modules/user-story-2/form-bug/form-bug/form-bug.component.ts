@@ -27,6 +27,11 @@ export class FormBugComponent implements OnInit, OnDestroy {
 
   constructor(private bugService: ShowBugsService, private route: ActivatedRoute, private router: Router) { }
 
+  /**
+   * This method initializes the component.
+   * Checks if the mode is Create or Update bug by checking id the id exists in the url and
+   * either show a form to create a bug or get the bug using the id.
+   */
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isCreate = (this.id) ? false : true;
@@ -41,6 +46,12 @@ export class FormBugComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * This method is used to create or update a bug by checking if the id of the
+   * bug is provided.
+   *
+   * @param formValue is the bug form object found in the html
+   */
   submitForm(formValue) {
     const dateTimeCreated = new Date();
 
@@ -65,6 +76,11 @@ export class FormBugComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * This method adds a new comment in the bug and reset the form.
+   *
+   * @param form is the comment form object found in the html
+   */
   submitComment(form: NgForm) {
     const newComment: Comment = {
       reporter: form.value.commentReporter,
