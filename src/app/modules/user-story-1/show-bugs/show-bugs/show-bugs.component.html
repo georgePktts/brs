@@ -42,7 +42,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let bug of bugs">
-        <td>{{bug.title}}</td>
+        <td>{{bug.title | shortenText}}</td>
         <td>{{bug.priority}}</td>
         <td>{{bug.reporter}}</td>
         <td>{{bug.createdAt | date}}</td>
