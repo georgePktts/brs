@@ -50,4 +50,47 @@ describe('FormBugComponent', () => {
 
   });
 
+  it('When form is full then form should be valid', () => {
+    // const form = fixture.debugElement.children[5].injector.get(NgForm);
+    const form = component.ngForm.form;
+
+    fixture.whenStable().then(() => {
+      form.controls['bugTitle'].setValue('Bug team 5');
+      form.controls['bugDescription'].setValue('Ena description');
+      form.controls['bugReporter'].setValue('QA');
+      form.controls['bugStatus'].setValue('Done');
+      form.controls['bugPriority'].setValue('1');
+      expect(form.valid).toBeTruthy();
+    });
+
+  });
+
+  it('When form has an invalid values is invalid', () => {
+
+    const form = component.ngForm.form;
+
+    fixture.whenStable().then(() => {
+      form.controls['bugTitle'].setValue('Bu');
+      form.controls['bugDescription'].setValue('Ena description');
+      form.controls['bugReporter'].setValue('QA');
+      form.controls['bugStatus'].setValue('Done');
+      form.controls['bugPriority'].setValue('1');
+      expect(form.valid).toBeFalsy();
+    });
+
+  });
+
+  it('When form has empty  values is invalid', () => {
+
+    const form = component.ngForm.form;
+
+    fixture.whenStable().then(() => {
+      form.controls['bugTitle'].setValue('');
+      form.controls['bugDescription'].setValue('');
+      form.controls['bugReporter'].setValue('');
+      form.controls['bugStatus'].setValue('');
+      form.controls['bugPriority'].setValue('');
+      expect(form.valid).toBeFalsy();
+    });
+  });
 });
