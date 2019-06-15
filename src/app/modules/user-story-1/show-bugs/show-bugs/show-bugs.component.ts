@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BugInfo } from '../../../models/bug-info.model';
 import { ShowBugsService } from '../show-bugs.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { toUnicode } from 'punycode';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -29,10 +28,16 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
 
   constructor(private bugService: ShowBugsService, private router: Router) { }
 
-  ngOnInit() {
+ngOnInit() {
     this.getBugs();
   }
 
+  /**
+   *Sorting our table by choosen column.
+   *
+   * @param {*} event The selected column name.
+   * @memberof ShowBugsComponent
+   */
   getBugsSorted(event) {
 
     if (this.columnName !== event) {
@@ -46,10 +51,22 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
     this.getBugs(event, this.isAsc, 0, this.searchBug);
   }
 
+  /**
+   *Navigate us to (form-bug) edit bug of our given id.
+   *
+   * @param {*} id The id of the bug we wanted to edit.
+   * @memberof ShowBugsComponent
+   */
   goToEdit(id) {
     this.router.navigate(['bug', id]);
   }
 
+  /**
+   *Navigate us to the next or the previous table page.
+   *
+   * @param {string} str Check which button we press next or previous.
+   * @memberof ShowBugsComponent
+   */
   getPage(str: string) {
     if (str === 'previous') {
       this.pageIndex--;
@@ -66,6 +83,12 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
     this.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug);
   }
 
+  /**
+   *Filter our bugs with the given values.
+   *
+   * @param {NgForm} form
+   * @memberof ShowBugsComponent
+   */
   searchBugs(form: NgForm) {
     if (this.searchBug.title !== form.value.searchTitle) { this.pageIndex = 0; }
     if (this.searchBug.priority !== form.value.searchPriority) { this.pageIndex = 0; }
@@ -85,6 +108,12 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
     this.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug);
   }
 
+  /**
+   *Reset our searching form values and give us again all the bugs.
+   *
+   * @param {NgForm} form
+   * @memberof ShowBugsComponent
+   */
   resetSearchingForm(form: NgForm) {
     form.resetForm();
     form.controls['searchPriority'].setValue('');
@@ -93,13 +122,27 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
     this.pageIndex = 0;
     this.getBugs(this.columnName, this.isAsc, this.pageIndex);
   }
-
-  getBugs(columnname?: string, isAsc?: boolean, pageIndex = 0, searchBug?) {
+/**
+ *Call getBugs function from show-bugs.service.ts to fill the table with bugs.
+ *
+ * @param {string} [columnname] (Optional)Is the column name so as to known which column we need to sort.
+ * @param {boolean} [isAsc]  (Optional)Help us with sorting direction.
+ * @param {number} [pageIndex=0] Give us the number or our page.
+ * @param {*} [searchBug] (Optional)Adding given values to filter bugs.
+ * @memberof ShowBugsComponent
+ */
+getBugs(columnname?: string, isAsc?: boolean, pageIndex = 0, searchBug?) {
     this.subscription = this.bugService.getBugs(columnname, isAsc, pageIndex, searchBug).subscribe(data => {
       this.bugs = data;
     });
   }
 
+  /**
+   *Create an alert than ask if we really want to delete our bug or not.If we anwsear ok the bug is deleted.
+   *
+   * @param {string} id Give us the id of the bug we ask to delete.
+   * @memberof ShowBugsComponent
+   */
   goToDelete(id: string) {
     if (confirm('Are you sure you want to delete this bug?')) {
       this.subscriptionDelete = this.bugService.deleteBugs(id).subscribe(data =>
@@ -110,5 +153,7 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.subscriptionDelete.unsubscribe();
   }
+
 }
