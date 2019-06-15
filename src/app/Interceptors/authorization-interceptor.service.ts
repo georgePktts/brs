@@ -11,9 +11,7 @@ import { Observable } from 'rxjs';
  * @implements {HttpInterceptor}
  */
 @Injectable()
-
 export class AuthorizationInterceptor implements HttpInterceptor {
-
 
   /**
    * We set the header of the http request
@@ -26,9 +24,7 @@ export class AuthorizationInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     req = req.clone({setHeaders: {Authorization: 'code.hub.ng5.token'}});
-    console.log(req);
     return next.handle(req).pipe( map((event: HttpEvent<any>) => {
-      console.log(event);
       return event;
     }));
   }

@@ -152,8 +152,8 @@ getBugs(columnname?: string, isAsc?: boolean, pageIndex = 0, searchBug?) {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    this.subscriptionDelete.unsubscribe();
+    if (this.subscription) { this.subscription.unsubscribe(); }
+    if (this.subscriptionDelete) { this.subscriptionDelete.unsubscribe(); }
   }
 
 }
