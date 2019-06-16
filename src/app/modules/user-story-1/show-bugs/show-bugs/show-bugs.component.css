@@ -2,7 +2,7 @@
   margin: -47px;
   margin-left: 0px;
   padding: 9px;
-  background: #2f519c;
+
   margin-right: 0px;
 }
 
@@ -10,10 +10,6 @@ form {
   font-family: sans-serif;
 }
 
-th {
-  background: #2f519c;
-  color: whitesmoke;
-}
 
 .btnEdit {
   display: block;
@@ -21,14 +17,14 @@ th {
   height: 30px;
   background: #2f519c;
   border-radius: 25%;
-  box-shadow: 0px 5px 12px -5px black;
   color: white;
   overflow: hidden;
   position: relative;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
 }
 
 .btnDelete {
-  background: red;
+  background: #f44336;
 }
 
 .btnEdit span{
@@ -51,9 +47,6 @@ table {
 
 .form-control{
   width: 20%;
-  border-width: 0px;
-  border-width: 4px;
-  border-color: #2f519c;
   margin-left: 12px;
 }
 
@@ -61,14 +54,26 @@ table {
   display: block;
   width: 30px;
   height: 30px;
-  background: whitesmoke;
+  color: whitesmoke;
   border-radius: 25%;
-  box-shadow: 0px 5px 12px -5px black;
-  color: #2f519c;
+  background-color: #3f51b5;
   overflow: hidden;
   position: relative;
   left: 56px;
   border-width: 0px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+}
+
+.btnCreate {
+  color: whitesmoke;
+  border-radius: 6px;
+  background-color:#008000;
+  border: 1px solid  	#008000;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+}
+
+.btnCreate:hover{
+  transform: scale(1.2);
 }
 
 .btnRefresh:hover{
@@ -100,14 +105,14 @@ table {
   display: block;
   width: 30px;
   height: 30px;
-  background: whitesmoke;
+  background-color: #3f51b5;
   border-radius: 25%;
-  box-shadow: 0px 5px 12px -5px black;
-  color: #2f519c;
+  color: whitesmoke;
   overflow: hidden;
   position: relative;
   left: 36px;
   border-width: 0px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
 }
 
 .btnSearch span{
@@ -127,15 +132,15 @@ table {
   display: block;
   width: 30px;
   height: 30px;
-  background: whitesmoke;
+  color: whitesmoke ;
   border-radius: 25%;
-  box-shadow: 0px 5px 12px -5px black;
-  color: #2f519c;
+  background-color: #3f51b5;
   overflow: hidden;
   position: relative;
   left: 390px;
   border-width: 0px;
   top: 12px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
 }
 
 .btnBack span{
@@ -147,32 +152,34 @@ table {
   position: absolute;
 }
 
-.btnBack:hover:enabled{
-  transform: scale(1.2);
-  background: whitesmoke;
-}
-
-.btnBack:hover:enabled{
-  transform: scale(1.2);
-}
 
 .btnBack:disabled{
-  background-color: #cccccc;
+  background-color: #3f51b5;
+  opacity: 0.6;
+  color: whitesmoke ;
+  cursor: not-allowed;
+}
+
+.btnNext:disabled{
+  background-color: #3f51b5;
+  opacity: 0.6;
+  color: whitesmoke ;
+  cursor: not-allowed;
 }
 
 .btnNext{
   display: block;
   width: 30px;
   height: 30px;
-  background: whitesmoke;
+  background-color: #3f51b5;
   border-radius: 25%;
-  box-shadow: 0px 5px 12px -5px black;
-  color: #2f519c;
+  color:whitesmoke;
   overflow: hidden;
   position: relative;
   left: 470px;
   border-width: 0px;
   top: -18px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
 }
 
 .btnNext span{
@@ -184,14 +191,10 @@ table {
   position: absolute;
 }
 
-.btnNext:hover:enabled{
+.btnBack:hover{
   transform: scale(1.2);
 }
 
-.btnNext:disabled{
-  background-color: #cccccc;
-}
-
-tfoot {
-  background: #2f519c;
+.btnNext:hover{
+  transform: scale(1.2);
 }

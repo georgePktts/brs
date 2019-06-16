@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { rowsAnimation } from '../../../../animations/template.animations';
 
 @Component({
   selector: 'app-show-bugs',
@@ -60,6 +61,10 @@ ngOnInit() {
    */
   goToEdit(id) {
     this.router.navigate(['bug', id]);
+  }
+
+  goToCreateForm() {
+    this.router.navigate(['bug']);
   }
 
   /**
@@ -152,6 +157,8 @@ getBugs(columnname?: string, isAsc?: boolean, pageIndex = 0, searchBug?) {
     }
     this.toastr.success('Bug deleted successfully!');
   }
+
+
 
   ngOnDestroy(): void {
     if (this.subscription) { this.subscription.unsubscribe(); }

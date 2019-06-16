@@ -36,13 +36,12 @@
         <th mat-sort-header="reported" (click)="getBugsSorted('Reporter')">Reporter</th>
         <th mat-sort-header="createdAt" (click)="getBugsSorted('Date Created')">Date Created</th>
         <th mat-sort-header="status" (click)="getBugsSorted('Status')">Status</th>
-        <th></th>
-        <th></th>
+        <th colspan="2"><button type="button" class="btnCreate" (click)="goToCreateForm()"><span style="margin-right:5px">Report Bug</span><span class="fa fa-plus"></span></button></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let bug of bugs">
-        <td>{{bug.title | shortenText}}</td>
+        <td style = "width: 20%">{{bug.title | shortenText}}</td>
         <td>{{bug.priority | changePriority}}</td>
         <td>{{bug.reporter}}</td>
         <td>{{bug.createdAt | date}}</td>

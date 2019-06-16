@@ -14,21 +14,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Ng Bootstrap
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
-import { ShortenPipePipe } from './shorten-pipe.pipe';
 import { AuthorizationInterceptor } from './Interceptors/authorization-interceptor.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    ShortenPipePipe
+    HomeComponent
   ],
   imports: [
 // tslint:disable-next-line: deprecation
     // NgbModule.forRoot(),
     ToastrModule.forRoot({
-      timeOut: 1500,
+      timeOut: 2000,
       positionClass: 'toast-top-right',
       preventDuplicates: true
     }),

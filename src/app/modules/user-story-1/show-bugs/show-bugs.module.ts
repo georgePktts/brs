@@ -10,6 +10,7 @@ import { ShortenTextPipe } from './shorten-text.pipe';
 import { ChangePriorityPipe } from './change-priority.pipe';
 
 
+
 @NgModule({
   declarations: [ShowBugsComponent, ShortenTextPipe, ChangePriorityPipe],
   imports: [
@@ -20,7 +21,7 @@ import { ChangePriorityPipe } from './change-priority.pipe';
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule,
+    MatInputModule
   ],
   exports: [ShowBugsComponent]
 })
