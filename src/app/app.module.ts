@@ -8,7 +8,7 @@ import { FormBugModule } from './modules/user-story-2/form-bug/form-bug.module';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { NavigationModule } from './modules/navigation/navigation.module';
-
+import { ToastrModule } from 'ngx-toastr';
 // Angural Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Ng Bootstrap
@@ -27,6 +27,11 @@ import { AuthorizationInterceptor } from './Interceptors/authorization-intercept
   imports: [
 // tslint:disable-next-line: deprecation
     // NgbModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    }),
     RouterModule.forRoot(routes, {useHash: false}),
     BrowserModule,
     AppRoutingModule,

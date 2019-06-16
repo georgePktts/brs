@@ -4,6 +4,7 @@ import { ShowBugsService } from '../show-bugs.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-show-bugs',
@@ -26,7 +27,7 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
     status: ''
   };
 
-  constructor(private bugService: ShowBugsService, private router: Router) { }
+  constructor(private bugService: ShowBugsService, private toastr: ToastrService, private router: Router) { }
 
 ngOnInit() {
     this.getBugs();
@@ -149,6 +150,7 @@ getBugs(columnname?: string, isAsc?: boolean, pageIndex = 0, searchBug?) {
         this.getBugs(this.columnName, this.isAsc, this.pageIndex, this.searchBug)
       );
     }
+    this.toastr.success('Bug deleted successfully!');
   }
 
   ngOnDestroy(): void {

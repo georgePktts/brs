@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Comment } from '../../../models/comment.model';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-form-bug',
@@ -25,7 +26,7 @@ export class FormBugComponent implements OnInit, OnDestroy {
 
   @ViewChild(NgForm) ngForm: NgForm;
 
-  constructor(private bugService: ShowBugsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private bugService: ShowBugsService, private route: ActivatedRoute, private toastr: ToastrService, private router: Router) { }
 
   /**
    * This method initializes the component.
@@ -67,10 +68,12 @@ export class FormBugComponent implements OnInit, OnDestroy {
 
     if (this.id) {
       this.subscriptionUpdateBug = this.bugService.updateBug(this.id, newBug).subscribe((data) => {
+        this.toastr.success('Bug updated successfully!');
         this.router.navigate(['display']);
       });
     } else {
       this.subscriptionCreate = this.bugService.createBugs(newBug).subscribe((data) => {
+        this.toastr.success('Bug created successfully!');
         this.router.navigate(['display']);
       });
     }
