@@ -7,9 +7,11 @@ import { FormsModule } from '@angular/forms';
 // Angular Material
 import { MatSortModule, MatTableModule, MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
 import { ShortenTextPipe } from './shorten-text.pipe';
+import { ChangePriorityPipe } from './change-priority.pipe';
+
 
 @NgModule({
-  declarations: [ShowBugsComponent, ShortenTextPipe],
+  declarations: [ShowBugsComponent, ShortenTextPipe, ChangePriorityPipe],
   imports: [
     CommonModule,
     MatSortModule,
