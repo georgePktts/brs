@@ -94,8 +94,4 @@ export class ShowBugsService {
     return this.http.delete(this.endpointUrl + '/' + id);
   }
 
-  getConfigResponse(): Observable<HttpResponse<BugInfo[]>> {
-    return this.http.get<BugInfo[]>(
-      this.endpointUrl, { observe: 'response' });
-  }
 }

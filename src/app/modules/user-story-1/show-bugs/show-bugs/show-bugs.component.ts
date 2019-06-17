@@ -148,7 +148,6 @@ getBugs(columnname?: string, isAsc?: boolean, pageIndex = 0, searchBug?) {
       this.totalPages = parseInt(headers[1].split(' ')[1]);
       this.totalPages--;
       this.bugs = resp.body;
-      console.log(this.pageIndex + ' / ' + this.totalPages);
     });
   }
 
