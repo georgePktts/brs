@@ -57,7 +57,7 @@
         <td colspan="7">
           <button type="button" class="btnBack" [disabled]="this.pageIndex <= 0" (click)="getPage('previous')"><span
               class="fa fa-arrow-left"></span></button>
-          <button type="button" class="btnNext" [disabled]="(this.bugs)?.length === 0 || (this.bugs)?.length < 10"
+          <button type="button" class="btnNext" [disabled]="(this.bugs)?.length === 0 || (this.bugs)?.length < 10 || pageIndex === totalPages"
             (click)="getPage('next')"><span class="fa fa-arrow-right"></span></button>
         </td>
       </tr>

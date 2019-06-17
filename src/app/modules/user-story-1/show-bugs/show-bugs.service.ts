@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BugInfo } from '../../models/bug-info.model';
 import { Observable } from 'rxjs';
 
@@ -21,7 +21,7 @@ export class ShowBugsService {
    * @param pageIndex is the page of bugs that we request from the server
    * @param searchBy Object that conatain the column names and values to filter the result
    */
-  getBugs(sortBy?: string, orderBy?: boolean, pageIndex = 0, searchBy?): Observable<BugInfo[]> {
+  getBugs(sortBy?: string, orderBy?: boolean, pageIndex = 0, searchBy?): Observable<HttpResponse<BugInfo[]>> {
 
     const direction: string = (orderBy) ? 'asc' : 'desc';
 
@@ -43,13 +43,17 @@ export class ShowBugsService {
     }
 
     switch (sortBy) {
-      case 'Title': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=title,' + direction + searchUrl);
-      case 'Priority': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=priority,' + direction + searchUrl);
-      case 'Reporter': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=reporter,' + direction + searchUrl);
+      case 'Title': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=title,' + direction + searchUrl,
+        { observe: 'response' });
+      case 'Priority': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=priority,' + direction + searchUrl,
+        { observe: 'response' });
+      case 'Reporter': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=reporter,' + direction + searchUrl,
+        { observe: 'response' });
       case 'Date Created': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=createdAt,'
-       + direction + searchUrl);
-      case 'Status': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=status,' + direction + searchUrl);
-      default: return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + searchUrl);
+       + direction + searchUrl, { observe: 'response' });
+      case 'Status': return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + '&sort=status,' + direction + searchUrl,
+        { observe: 'response' });
+      default: return this.http.get<BugInfo[]>(this.endpointUrl + '?page=' + pageIndex + searchUrl, { observe: 'response' });
     }
   }
 
@@ -90,4 +94,8 @@ export class ShowBugsService {
     return this.http.delete(this.endpointUrl + '/' + id);
   }
 
+  getConfigResponse(): Observable<HttpResponse<BugInfo[]>> {
+    return this.http.get<BugInfo[]>(
+      this.endpointUrl, { observe: 'response' });
+  }
 }

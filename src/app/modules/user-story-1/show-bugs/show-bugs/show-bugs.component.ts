@@ -18,6 +18,7 @@ export class ShowBugsComponent implements OnInit, OnDestroy {
   isAsc = false;
   columnName: string;
   pageIndex = 0;
+  totalPages = 0;
   subscription: Subscription;
   subscriptionDelete: Subscription;
   searchBug = {
@@ -34,7 +35,7 @@ ngOnInit() {
   }
 
   /**
-   *Sorting our table by choosen column.
+   * Sorting our table by choosen column.
    *
    * @param {*} event The selected column name.
    * @memberof ShowBugsComponent
@@ -53,7 +54,7 @@ ngOnInit() {
   }
 
   /**
-   *Navigate us to (form-bug) edit bug of our given id.
+   * Navigate us to (form-bug) edit bug of our given id.
    *
    * @param {*} id The id of the bug we wanted to edit.
    * @memberof ShowBugsComponent
@@ -67,7 +68,7 @@ ngOnInit() {
   }
 
   /**
-   *Navigate us to the next or the previous table page.
+   * Navigate us to the next or the previous table page.
    *
    * @param {string} str Check which button we press next or previous.
    * @memberof ShowBugsComponent
@@ -89,7 +90,7 @@ ngOnInit() {
   }
 
   /**
-   *Filter our bugs with the given values.
+   * Filter our bugs with the given values.
    *
    * @param {NgForm} form
    * @memberof ShowBugsComponent
@@ -114,7 +115,7 @@ ngOnInit() {
   }
 
   /**
-   *Reset our searching form values and give us again all the bugs.
+   * Reset our searching form values and give us again all the bugs.
    *
    * @param {NgForm} form
    * @memberof ShowBugsComponent
@@ -128,7 +129,7 @@ ngOnInit() {
     this.getBugs(this.columnName, this.isAsc, this.pageIndex);
   }
 /**
- *Call getBugs function from show-bugs.service.ts to fill the table with bugs.
+ * Call getBugs function from show-bugs.service.ts to fill the table with bugs.
  *
  * @param {string} [columnname] (Optional)Is the column name so as to known which column we need to sort.
  * @param {boolean} [isAsc]  (Optional)Help us with sorting direction.
@@ -137,8 +138,17 @@ ngOnInit() {
  * @memberof ShowBugsComponent
  */
 getBugs(columnname?: string, isAsc?: boolean, pageIndex = 0, searchBug?) {
-    this.subscription = this.bugService.getBugs(columnname, isAsc, pageIndex, searchBug).subscribe(data => {
-      this.bugs = data;
+    this.subscription = this.bugService.getBugs(columnname, isAsc, pageIndex, searchBug).subscribe(resp => {
+      // display its headers
+      const keys = resp.headers.keys();
+      const headers = keys.map(key =>
+        `${key}: ${resp.headers.get(key)}`);
+
+      // access the body directly, which is typed as `Config`.
+      this.totalPages = parseInt(headers[1].split(' ')[1]);
+      this.totalPages--;
+      this.bugs = resp.body;
+      console.log(this.pageIndex + ' / ' + this.totalPages);
     });
   }
 
