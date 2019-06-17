@@ -4,20 +4,15 @@
 
 */
 
-
 .navbar-brand{
   cursor: default;
+  font-weight: 600;
+  font-family: unset;
 }
 
 .navbar-team{
   cursor: default;
-  padding-left: 350px;
-}
-
-a:not([href]):not([tabindex]) {
-  color: inherit;
-  text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
   font-family: unset;
 }
 
@@ -36,8 +31,7 @@ img {
   border-radius: 50%;
   background-color: #3f51b5;
   overflow: hidden;
-  position: relative;
-  left: 624px;
+  color:whitesmoke;
   border-width: 0px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
   outline:0;
@@ -46,11 +40,11 @@ img {
 .nav-link span{
   display: block;
   font-size: 22px;
-  left: 6px;
-  top: 4px;
+  left: -2px;
+  top: -4px;
   font-weight: 500;
   color: whitesmoke;
-  position: absolute;
+  position: relative;
 }
 
 .nav-link:hover{
