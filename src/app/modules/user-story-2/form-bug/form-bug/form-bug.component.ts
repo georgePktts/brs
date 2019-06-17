@@ -39,7 +39,7 @@ export class FormBugComponent implements OnInit, OnDestroy {
     if (!this.isCreate) {
       this.subscriptionGetById = this.bugService.getBugById(this.id).subscribe(data => {this.bugs = data; this.isGetComplete = true; },
         err => { if (err.status === 500 ) {
-          alert('The bug with id: "' + this.id + '" does not exist!');
+          this.toastr.error('The bug with id: "' + this.id + '" does not exist!');
           this.router.navigate(['display']);
         } });
     } else {

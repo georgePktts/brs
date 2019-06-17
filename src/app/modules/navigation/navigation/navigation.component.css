@@ -3,8 +3,21 @@
  }
 
 */
-.navbar-light .navbar-nav .nav-link {
-  font-weight: normal;
+nav {
+  background: white;
+}
+span {
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
+
+.container-fluid {
+  padding: 3px;
+}
+
+img {
+  width: 54px;
 }
 /*
 .navbar-light .navbar-nav .nav-link {
@@ -27,13 +40,3 @@
   border-bottom: 1px solid #f0f0f0;
 }
 */
-li.nav-item a.nav-link.active{
-  color: #2f519c !important;
-}
-
-.mb-5, .my-5 {
-  margin-bottom: 5rem !important;
-}
-div.container-fluid{
-  margin: -16px;
-}

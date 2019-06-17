@@ -33,26 +33,8 @@
   <!-- </div>
 </nav> -->
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow mb-5">
+<nav class="navbar navbar-expand-lg navbar-light shadow mb-5" class="text-center">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['']"><img src="assets/img/logo.png"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop"
-      aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarTop">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active current" [routerLink]="['/display']">List of Bugs</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active current" [routerLink]="['/bug']">Report Bug</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active current" [routerLink]="['/about']">About</a>
-        </li>
-      </ul>
-    </div>
+    <img src="assets/img/shield.png"><span (click)="goToRoute('')"> Bug Report System</span>
   </div>
 </nav>

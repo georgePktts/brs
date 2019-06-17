@@ -1,4 +1,4 @@
-<section class="mat-elevation-z4">
+<section class="mat-elevation-z9">
   <form #searchForm="ngForm" (ngSubmit)="searchBugs(searchForm)" class="form-inline">
     <input class="form-control" type="text" name="searchTitle" #searchTitle="ngModel" ngModel
       placeholder="Search Title">
@@ -36,7 +36,7 @@
         <th mat-sort-header="reported" (click)="getBugsSorted('Reporter')">Reporter</th>
         <th mat-sort-header="createdAt" (click)="getBugsSorted('Date Created')">Date Created</th>
         <th mat-sort-header="status" (click)="getBugsSorted('Status')">Status</th>
-        <th colspan="2"><button type="button" class="btnCreate" (click)="goToCreateForm()"><span style="margin-right:5px">Report Bug</span><span class="fa fa-plus"></span></button></th>
+        <th colspan="2"><button type="button" class="btnCreate" (click)="goToCreateForm()"><span class="fa fa-plus"></span></button></th>
       </tr>
     </thead>
     <tbody>

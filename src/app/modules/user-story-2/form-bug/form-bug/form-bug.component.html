@@ -1,5 +1,5 @@
-<section class="container mat-elevation-z4">
-    <div class="header mat-elevation-z2">
+<section class="container mat-elevation-z9">
+    <div class="header mat-elevation-z4">
         <h3 *ngIf="isCreate;">Report Bug</h3>
         <h3 *ngIf="!isCreate;">Edit Bug</h3>
     </div>
@@ -98,8 +98,8 @@
 </section>
 
 
-<section *ngIf="!isCreate && isGetComplete" class="my-5 container mat-elevation-z4">
-    <div class="header mat-elevation-z2">
+<section *ngIf="!isCreate && isGetComplete" class="my-5 container mat-elevation-z9">
+    <div class="header mat-elevation-z4">
         <h3>Comment Section</h3>
     </div>
   <div *ngFor="let comment of bugs?.comments; let idx=index">

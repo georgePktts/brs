@@ -1,3 +1,8 @@
+section {
+  margin-top: 64px;
+  color: black;
+}
+
 .form-inline{
   margin: -47px;
   margin-left: 0px;
@@ -13,24 +18,25 @@ form {
 
 .btnEdit {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   background: #2f519c;
-  border-radius: 25%;
+  border-radius: 50%;
   color: white;
   overflow: hidden;
   position: relative;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+  outline:0;
 }
 
 .btnDelete {
-  background: #f44336;
+  background: #eb291b;
 }
 
 .btnEdit span{
   display: block;
   font-size: 20px;
-  left: 6px;
+  left: 7px;
   top: 5px;
   font-weight: 500;
   position: absolute;
@@ -45,6 +51,10 @@ table {
   width: 100%;
 }
 
+tbody {
+  color: black;
+}
+
 .form-control{
   width: 20%;
   margin-left: 12px;
@@ -52,29 +62,49 @@ table {
 
 .btnRefresh{
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   color: whitesmoke;
-  border-radius: 25%;
+  border-radius: 50%;
   background-color: #3f51b5;
   overflow: hidden;
   position: relative;
   left: 56px;
   border-width: 0px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+  outline:0;
 }
 
 .btnCreate {
+  display: block;
+  width: 32px;
+  height: 32px;
   color: whitesmoke;
-  border-radius: 6px;
-  background-color:#008000;
-  border: 1px solid  	#008000;
+  border-radius: 50%;
+  background-color: green;
+  overflow: hidden;
+  position: relative;
+  left: 34px;
+  border-width: 0px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+  outline:0;
+}
+
+.btnCreate span{
+  display: block;
+  font-size: 20px;
+  left: 9px;
+  top: 7px;
+  font-weight: 500;
+  position: absolute;
 }
 
 .btnCreate:hover{
+  background: whitesmoke;
+  color: green;
   transform: scale(1.2);
 }
+
 
 .btnRefresh:hover{
   transform: scale(1.2);
@@ -83,7 +113,7 @@ table {
 .btnRefresh span{
   display: block;
   font-size: 20px;
-  left: 6px;
+  left: 7px;
   top: 6px;
   font-weight: 500;
   position: absolute;
@@ -103,37 +133,38 @@ table {
 
 .btnSearch{
   display: block;
-  width: 30px;
-  height: 30px;
-  background-color: #3f51b5;
-  border-radius: 25%;
+  width: 32px;
+  height: 32px;
+  background: #2f519c;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
   color: whitesmoke;
   overflow: hidden;
   position: relative;
   left: 36px;
   border-width: 0px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+  outline:0;
 }
 
 .btnSearch span{
   display: block;
   font-size: 20px;
   left: 6px;
-  top: 6px;
+  top: 5px;
   font-weight: 500;
   position: absolute;
 }
 
-.btnSearch:hover{
-  transform: scale(1.2);
+.btnSearch:hover {
+  transform: rotate(90deg) scale(1.2);
 }
 
 .btnBack{
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   color: whitesmoke ;
-  border-radius: 25%;
+  border-radius: 50%;
   background-color: #3f51b5;
   overflow: hidden;
   position: relative;
@@ -141,13 +172,14 @@ table {
   border-width: 0px;
   top: 12px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+  outline:0;
 }
 
 .btnBack span{
   display: block;
   font-size: 20px;
-  left: 7px;
-  top: 4px;
+  left: 8px;
+  top: 5px;
   font-weight: 500;
   position: absolute;
 }
@@ -169,10 +201,10 @@ table {
 
 .btnNext{
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   background-color: #3f51b5;
-  border-radius: 25%;
+  border-radius: 50%;
   color:whitesmoke;
   overflow: hidden;
   position: relative;
@@ -180,21 +212,22 @@ table {
   border-width: 0px;
   top: -18px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+  outline:0;
 }
 
 .btnNext span{
   display: block;
   font-size: 20px;
-  left: 7px;
-  top: 4px;
+  left: 8px;
+  top: 5px;
   font-weight: 500;
   position: absolute;
 }
 
-.btnBack:hover{
+.btnBack:hover:enabled{
   transform: scale(1.2);
 }
 
-.btnNext:hover{
+.btnNext:hover:enabled{
   transform: scale(1.2);
 }
