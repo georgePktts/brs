@@ -126,6 +126,13 @@ ngOnInit() {
     form.controls['searchReporter'].setValue('');
     form.controls['searchStatus'].setValue('');
     this.pageIndex = 0;
+    this.searchBug = {
+      title: '',
+      priority: 0,
+      reporter: '',
+      status: ''
+    };
+
     this.getBugs(this.columnName, this.isAsc, this.pageIndex);
   }
 /**

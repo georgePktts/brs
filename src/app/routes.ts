@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
   { path: '', component: ShowBugsComponent },
-  { path: 'about', component: HomeComponent },
   { path: 'display', component: ShowBugsComponent },
   { path: 'bug', component: FormBugComponent },
   { path: 'bug/:id', component: FormBugComponent },
